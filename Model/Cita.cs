@@ -38,8 +38,8 @@ namespace Model {
         public override string ToString () {
             return
                 "\r\nPaciente: " + paciente.Nombre +
-                "\r\nFecha: " + fecha.ToString("dd-mm-yyyy") +
-                "\r\nHora: " + hora.ToString("HH:mm") +
+                "\r\nFecha: " + fecha.ToString("yyyy-MM-dd") +
+                "\r\nHora: " + hora.ToString("HH:mm:ss") +
                 "\r\nOdontólogo: " + odontologo.Nombre +
                 "\r\nConsultorio: " + odontologo.Consultorio;
         }

@@ -55,6 +55,11 @@ namespace Control
             }
         }
 
+        /*public void IndiceOdontologo()
+        {
+
+        }*/
+
         public string DayOfWeek(DateTime? date)
         {
             return date.Value.ToString("dddd", new CultureInfo("Es-Es"));
@@ -65,11 +70,9 @@ namespace Control
             ConsultarOdontologos(fecha, hora, cmbHora, cmbOdontologo);
         }
 
-        public void LabelConsultorio(ComboBox cmbOdontologo, Label lblConsultorio)
+        public void LabelConsultorio(string nombre, ComboBox cmbOdontologo, Label lblConsultorio)
         {
-            string  nombre = "";
             int indice = 0, label = 0;
-            nombre = (string)cmbOdontologo.SelectedItem;
             indice = odontologos.FindIndex(x => x.Nombre == nombre);
             label = odontologos[indice].Consultorio;
             lblConsultorio.Text = label.ToString();

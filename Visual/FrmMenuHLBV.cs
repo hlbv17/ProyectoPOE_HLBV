@@ -34,5 +34,17 @@ namespace Visual
             FrmListarCitasHLBV frmL = new FrmListarCitasHLBV();
             frmL.ShowDialog();
         }
+
+        private void editarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FrmEditarCitasHLBV frmE = new FrmEditarCitasHLBV();
+            frmE.ShowDialog();
+        }
+
+        private void consultarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
+            frmF.ShowDialog();
+        }
     }
 }

@@ -18,7 +18,6 @@ namespace Visual
         public FrmRegistrarCitaHLBV()
         {
             InitializeComponent();
-            //cmbOdontologo.DisplayMember = "Odontologo.Nombre";
             admCita.llenarComboH(cmbHora);
         }
 
@@ -41,12 +40,11 @@ namespace Visual
             string cedula = txtPaciente.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
             DateTime fecha = dtpFecha.Value.Date;
             DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
-            //string sHora = dHora.ToString("HH:mm");
             errorP.Clear();
             if (admCita.Validar(txtPaciente, cmbHora, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.guardar(1, cedula, fecha, dHora);
+                admCita.guardar(1, cedula, odontologo, fecha, dHora, odontologo);
                 admCita.agregar(txtRegistro);
             }
         }
@@ -63,7 +61,8 @@ namespace Visual
 
         private void cmbOdontologo_SelectedValueChanged(object sender, EventArgs e)
         {
-            admO.LabelConsultorio(cmbOdontologo, lblConsultorio);
+            string odontologo = (string)cmbOdontologo.SelectedItem;
+            admO.LabelConsultorio(odontologo, cmbOdontologo, lblConsultorio);
         }
     }
 }

@@ -57,7 +57,46 @@ namespace Datos
             return odontologos;
         }
 
-        public Odontologo ConsultarOdontologo(string dia, DateTime hora)
+        public Odontologo ConsultarOdontologo(string nombre)
+        {
+            Odontologo o = null;
+            string sql = "SELECT PE.id_persona, PE.cedula, PE.id_sexo, PE.nombre, PE.fecha_nacimiento," +
+            "O.consultorio \n" +
+            "FROM Persona PE \n" +
+            "INNER JOIN Odontologo O ON PE.id_persona = O.id_persona \n" +
+            "WHERE PE.nombre = '" + nombre + "' ;";
+            SqlDataReader dr = null;
+            Console.WriteLine(sql);
+            string mensaje = "";
+            mensaje = con.Conectar();
+            if (mensaje[0] == '1')
+            {
+                try
+                {
+                    cmd.Connection = con.Cn;
+                    cmd.CommandText = sql;
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        o = new Odontologo();
+                        o.Id_persona = Convert.ToInt32(dr["id_persona"]);
+                        o.Cedula = dr["cedula"].ToString();
+                        o.Sexo = Convert.ToChar(dr["id_sexo"]);
+                        o.Nombre = dr["nombre"].ToString();
+                        o.FechaNacimiento = Convert.ToDateTime(dr["fecha_nacimiento"]);
+                        o.Consultorio = Convert.ToInt32(dr["consultorio"]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al consultar en la tabla paciente " + ex.Message);
+                }
+            }
+            con.Cerrar();
+            return o;
+        }
+
+        /*public Odontologo ConsultarOdontologo(string dia, DateTime hora)
         {
             Odontologo o = null;
             string sql = "SELECT PE.id_persona, PE.cedula, PE.id_sexo, PE.nombre, PE.fecha_nacimiento," +
@@ -90,7 +129,7 @@ namespace Datos
                         o.Nombre = dr["nombre"].ToString();
                         o.FechaNacimiento = Convert.ToDateTime(dr["fecha_nacimiento"]);
                         o.Especialidad = dr["especialidad"].ToString();
-                        
+
                     }
                 }
                 catch (Exception ex)
@@ -100,7 +139,7 @@ namespace Datos
             }
             con.Cerrar();
             return o;
-        }
+        }*/
 
 
     }
