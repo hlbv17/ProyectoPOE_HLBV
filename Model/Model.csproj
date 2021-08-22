@@ -43,6 +43,8 @@
     <Compile Include="Cita.cs" />
     <Compile Include="Dias.cs" />
     <Compile Include="Horario.cs" />
+    <Compile Include="IOdontologo.cs" />
+    <Compile Include="IPaciente.cs" />
     <Compile Include="Odontologo.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Persona.cs" />

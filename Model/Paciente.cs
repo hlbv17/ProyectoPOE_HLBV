@@ -1,15 +1,15 @@
-﻿using Model;
+﻿using Dentalig_HLBV_ProyectoPOE;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Model {
-    public class Paciente : Persona {
+    public class Paciente : Persona, IPaciente {
 
-        //private int id_paciente;
         private string discapacidad;
-        //private int  id_etapa_edad;
+
         public Paciente() : base ( 1,"",' ', "", DateTime.Now)
         {
             //this.id_paciente = 1;

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Dentalig_HLBV_ProyectoPOE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Model {
-    public class Odontologo : Persona {
+    public class Odontologo : Persona, IOdontologo {
 
         //private int id_odontologo;
         private int especialidad;
@@ -35,6 +36,11 @@ namespace Model {
         //public int Id_odontologo { get => id_odontologo; set => id_odontologo = value; }
 
         public Horario Horario { get => horario; set => horario = value; }
+
+        public string Estado(int consultorio)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string ToString () {
             return
