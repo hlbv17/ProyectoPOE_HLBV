@@ -40,14 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Antecedente.cs" />
+    <Compile Include="AtencionMedica.cs" />
     <Compile Include="Cita.cs" />
     <Compile Include="Dias.cs" />
+    <Compile Include="HistoriaClinica.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="IOdontologo.cs" />
     <Compile Include="IPaciente.cs" />
     <Compile Include="Odontologo.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Persona.cs" />
+    <Compile Include="PiezaDental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
