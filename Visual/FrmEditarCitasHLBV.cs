@@ -19,20 +19,16 @@ namespace Visual
         {
             InitializeComponent();
             admCita.BloquearCampos(txtCedula, dtpFecha, cmbHora, cmbOdontologo);
+            
         }
 
         private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
         {
             char c = e.KeyChar;
-            if (!char.IsDigit(c) && (e.KeyChar != Convert.ToChar(Keys.Back)))
+            if (char.IsLetter(c) && (e.KeyChar != Convert.ToChar(Keys.Back)))
             {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtCedula.Text.Length >= 10)
-                    admPa.ConsultarPacientes(txtCedula.Text, lblPaciente);
-                else
-                {
-                    e.Handled = true;
-                    return;
-                }
+                e.Handled = true;
+                return;
             }
         }
 
@@ -40,19 +36,58 @@ namespace Visual
         {
             string cedula = txtCedula.Text;
             DateTime fecha = dtpFecha.Value.Date;
+            admCita.llenarComboH(cmbHora);
             admCita.BuscarDatos(dgvCitas, cedula);
             admCita.DesbloquearCampos(txtCedula, dtpFecha, cmbHora, cmbOdontologo);
-            admCita.ActualizarDatos(dgvCitas, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
+           
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             admCita.LimpiarCampos(txtCedula, dgvCitas, dtpFecha, cmbHora, cmbOdontologo);
+            //admCita.BloquearCampos(dgvCitas, txtCedula, dtpFecha, cmbHora, cmbOdontologo);
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            string cedula = txtCedula.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
+            DateTime fecha = dtpFecha.Value.Date;
+            DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
+            errorP.Clear();
+            if (admCita.Validar(txtCedula, cmbHora, cmbOdontologo, errorP))
+            {
+                errorP.Clear();
+                admCita.Editar(1, cedula, odontologo, fecha, dHora);
+            }
+        }
 
+        private void dgvCitas_CurrentCellChanged(object sender, EventArgs e)
+        {
+            /*int posicion = dgvCitas.CurrentRow.Index;
+            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
+            admCita.ActualizarDatos(dgvCitas, posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);*/
+        }
+
+        private void cmbOdontologo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string odontologo = (string)cmbOdontologo.SelectedItem;
+            admO.LabelConsultorio(odontologo, cmbOdontologo, lblConsultorio);
+        }
+
+        private void cmbHora_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string hora = cmbHora.Text;
+            DateTime fecha = dtpFecha.Value.Date;
+            DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
+            //cmbOdontologo.Items.Clear();
+            admO.llenarComboO(fecha, dHora, cmbHora, cmbOdontologo);
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int posicion = dgvCitas.CurrentRow.Index;
+            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
+            admCita.ActualizarDatos(dgvCitas, posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
     }
 }

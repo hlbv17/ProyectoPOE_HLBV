@@ -50,6 +50,12 @@
     <Compile Include="FrmEditarCitasHLBV.Designer.cs">
       <DependentUpon>FrmEditarCitasHLBV.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmEliminarCitasHLBV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEliminarCitasHLBV.Designer.cs">
+      <DependentUpon>FrmEliminarCitasHLBV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFiltrarCitasHLBV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <EmbeddedResource Include="FrmEditarCitasHLBV.resx">
       <DependentUpon>FrmEditarCitasHLBV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEliminarCitasHLBV.resx">
+      <DependentUpon>FrmEliminarCitasHLBV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFiltrarCitasHLBV.resx">
       <DependentUpon>FrmFiltrarCitasHLBV.cs</DependentUpon>

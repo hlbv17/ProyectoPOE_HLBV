@@ -46,5 +46,11 @@ namespace Visual
             FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
             frmF.ShowDialog();
         }
+
+        private void eliminarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FrmEliminarCitasHLBV frmEl = new FrmEliminarCitasHLBV();
+            frmEl.ShowDialog();
+        }
     }
 }

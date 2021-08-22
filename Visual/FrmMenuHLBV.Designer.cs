@@ -171,6 +171,7 @@ namespace Visual
             this.eliminarToolStripMenuItem2.Name = "eliminarToolStripMenuItem2";
             this.eliminarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.eliminarToolStripMenuItem2.Text = "Eliminar";
+            this.eliminarToolStripMenuItem2.Click += new System.EventHandler(this.eliminarToolStripMenuItem2_Click);
             // 
             // listarToolStripMenuItem
             // 

@@ -44,7 +44,7 @@ namespace Visual
             if (admCita.Validar(txtPaciente, cmbHora, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.guardar(1, cedula, odontologo, fecha, dHora, odontologo);
+                admCita.guardar(1, cedula, odontologo, fecha, dHora);
                 admCita.agregar(txtRegistro);
             }
         }

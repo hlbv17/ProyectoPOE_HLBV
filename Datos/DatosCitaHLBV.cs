@@ -96,7 +96,7 @@ namespace Datos
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
+            string sql = "SELECT C.id_cita, P1.cedula as cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
@@ -120,6 +120,8 @@ namespace Datos
                         o = new Odontologo();
 
                         c.Id_cita = Convert.ToInt32(dr["id_cita"]);
+                        pa.Cedula = dr["cedula"].ToString();
+                        c.Paciente.Cedula = pa.Cedula;
                         pa.Nombre = dr["paciente"].ToString();
                         c.Paciente.Nombre = pa.Nombre;
                         o.Nombre = dr["odontologo"].ToString();
@@ -152,7 +154,7 @@ namespace Datos
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
                          "AND C.id_odontologo = O.consultorio \n" +
-                         "AND P1.cedula = '" + cedula + "'" +
+                         "AND P1.cedula = '" + cedula + "'\n" +
                          "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'\n" +
                          "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'";
             SqlDataReader dr = null;
@@ -194,31 +196,113 @@ namespace Datos
             return citas;
         }
 
-        /*public string EditarCitas(string cedula, SqlConnection cn)
+        public List<Cita> ConsultarCitasF(DateTime fecha)
         {
-            string x = "";
+            List<Cita> citas = new List<Cita>();
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "UPDATE C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
+            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
                          "AND C.id_odontologo = O.consultorio \n" +
-                         "AND P1.cedula = '" + cedula + "'";
-            try
+                         "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'";
+            SqlDataReader dr = null;
+            Console.WriteLine(sql);
+            string mensaje = "";
+            mensaje = con.Conectar();
+            if (mensaje[0] == '1')
             {
-                cmd.Connection = cn;
-                cmd.CommandText = sql;
-                cmd.ExecuteNonQuery();
-                x = "1";
+                try
+                {
+                    cmd.Connection = con.Cn;
+                    cmd.CommandText = sql;
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        c = new Cita();
+                        pa = new Paciente();
+                        o = new Odontologo();
+
+                        c.Id_cita = Convert.ToInt32(dr["id_cita"]);
+                        pa.Nombre = dr["paciente"].ToString();
+                        c.Paciente.Nombre = pa.Nombre;
+                        o.Nombre = dr["odontologo"].ToString();
+                        c.Odontologo.Nombre = o.Nombre;
+                        c.Fecha = DateTime.Parse(dr["fecha"].ToString());
+                        string hour = dr["hora"].ToString();
+                        c.Hora = DateTime.ParseExact(hour, "HH:mm:ss", CultureInfo.InvariantCulture);
+                        o.Consultorio = Convert.ToInt32(dr["consultorio"]);
+                        c.Odontologo.Consultorio = o.Consultorio;
+                        citas.Add(c);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al consultar en la tabla Cita " + ex.Message);
+                }
             }
-            catch (SqlException ex)
+            con.Cerrar();
+            return citas;
+        }
+
+        public string EliminarCitas(int id)
+        {
+            string sql = "DELETE FROM Cita WHERE id_cita = '" + id + "'";
+            Console.WriteLine(sql);
+            string mensaje = "";
+            mensaje = con.Conectar();
+            if (mensaje[0] == '1')
             {
-                x = "0" + ex.Message;
+                try
+                {
+                    cmd.Connection = con.Cn;
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                    mensaje = "1";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error al eliminar en la tabla Cita " + e.Message);
+                    mensaje = "0" + e.Message;
+                }
             }
-            return x;
-        }*/
+            con.Cerrar();
+            return mensaje;
+        }
+
+        public string EditarCitas(Cita c)
+        {
+            string mensaje = "";
+            /*Cita c = null;
+            Odontologo o = null;
+            Paciente pa = null;*/
+            string sql = "UPDATE Cita \n" +
+                         "SET id_paciente = '"+c.Paciente.Id_persona+ "' , id_odontologo = '" + c.Odontologo.Id_persona + "'," +
+                         "fecha = '" + c.Fecha + "'," +
+                         "hora = '" + c.Hora + "'\n" +
+                         "WHERE id_cita = '" + c.Id_cita + "'";
+            Console.WriteLine(sql);
+            mensaje = con.Conectar();
+            if (mensaje[0] == '1')
+            {
+                try
+                {
+                    cmd.Connection = con.Cn;
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                    mensaje = "1";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error al actualizar en la tabla Cita " + e.Message);
+                    mensaje = "0" + e.Message;
+                }
+            }
+            con.Cerrar();
+            return mensaje;
+        }
 
         /*public List<Cita> FiltrarCitas(DateTime hora, DateTime fecha)
         {
