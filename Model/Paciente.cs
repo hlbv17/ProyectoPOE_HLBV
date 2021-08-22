@@ -68,7 +68,8 @@ namespace Model {
         // Method: ToString
         public override string ToString () {
             return base.ToString () + 
-                "\r\nDiscapacidad: " + discapacidad;
+                "\r\nDiscapacidad: " + discapacidad +
+                "\r\nCategoria Edad: " + CategoriaEdad(); 
         }
     }
 }
