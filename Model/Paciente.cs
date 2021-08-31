@@ -12,7 +12,6 @@ namespace Model {
 
         public Paciente() : base ( 1,"",' ', "", DateTime.Now)
         {
-            //this.id_paciente = 1;
             this.discapacidad = "";
         }
 

@@ -13,14 +13,13 @@ namespace Model {
         private string nombre;
         private DateTime fechaNacimiento;
 
-        // Constructor: defautl
-        /*public Persona () {
+        public Persona () {
             this.id_persona = 1;
             this.cedula = "";
             this.sexo = ' ';
             this.nombre = "";
             this.fechaNacimiento = DateTime.Now;
-        }*/
+        }
 
         public string Cedula { get => cedula; set => cedula = value; }                              // Getter & Setter: cedula
         public char Sexo { get => sexo; set => sexo = value; }                                      // Getter & Setter: sexo

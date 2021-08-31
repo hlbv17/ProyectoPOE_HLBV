@@ -15,7 +15,8 @@ namespace Datos
         {
             
             Paciente p = null;
-            string sql = "Select PE.id_persona, PE.cedula, PE.id_sexo, PE.nombre, PE.fecha_nacimiento, PA. discapacidad \n" +
+            string sql = "Select PE.id_persona, PE.cedula, PE.id_sexo, PE.nombre, PE.fecha_nacimiento, " +
+                "PA. discapacidad \n" +
                 "FROM Persona PE \n" +
                 "INNER JOIN Paciente PA ON PE.id_persona = PA.id_persona \n"+
                 "WHERE PE.cedula = '" + cedula + "'";

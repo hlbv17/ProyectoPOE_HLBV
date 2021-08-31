@@ -17,7 +17,7 @@ namespace Datos
         public String insertarCita(Cita c)
         {
             string sql = "INSERT INTO Cita (id_odontologo, id_paciente, fecha, hora)" +
-                "VALUES ('" + c.Odontologo.Id_persona + "','" + c.Paciente.Id_persona + "','" + c.Fecha.ToString("yyyy-MM-dd") + "','" + c.Hora.ToString("hh:mm") + "')";
+                "VALUES ('" + c.Odontologo.Id_persona + "','" + c.Paciente.Id_persona + "','" + c.Fecha.ToString("yyyy-MM-dd") + "','" + c.Hora.ToString("HH:mm") + "')";
             Console.WriteLine(sql);
             string mensaje = "";
             mensaje = con.Conectar();
@@ -96,7 +96,8 @@ namespace Datos
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "SELECT C.id_cita, P1.cedula as cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
+            string sql = "SELECT C.id_cita, P1.cedula as cedula, P1.nombre as paciente, P2.nombre as odontologo, " +
+                         "C.fecha, C.hora, O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
@@ -143,20 +144,22 @@ namespace Datos
             return citas;
         }
 
-        public List<Cita> ConsultarCitas(string cedula, DateTime fecha, DateTime hora)
+        public List<Cita> ConsultarCitas(string cedula, DateTime fecha, string hora)
         {
             List<Cita> citas = new List<Cita>();
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
+            int n = 0;
+            string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
+                         "O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
-                         "AND C.id_odontologo = O.consultorio \n" +
-                         "AND P1.cedula = '" + cedula + "'\n" +
-                         "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'\n" +
-                         "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'";
+                         "AND C.id_odontologo = O.consultorio \n";
+            string sqlCedula = "P1.cedula = '" + cedula + "' \n";
+            string sqlFecha = "C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "' \n";
+            string sqlHora = "C.hora = '" + hora + "' ";
             SqlDataReader dr = null;
             Console.WriteLine(sql);
             string mensaje = "";
@@ -166,25 +169,50 @@ namespace Datos
                 try
                 {
                     cmd.Connection = con.Cn;
-                    cmd.CommandText = sql;
+                    if (hora == "--Seleccionar--" && cedula == "")
+                    {
+                       cmd.CommandText = sql +
+                       "AND " + sqlFecha;
+                    }
+                    else if (hora == "--Seleccionar--" && cedula != "")
+                    {
+                       cmd.CommandText = sql +
+                       "AND " + sqlFecha +
+                       "AND " + sqlCedula;
+                    }
+                    else if (hora != "--Seleccionar--" && cedula == "")
+                    {
+                        cmd.CommandText = sql +
+                        "AND " + sqlFecha +
+                        "AND " + sqlHora;
+                    }
+                    else if (hora != "--Seleccionar--" && cedula != "")
+                    {
+                    cmd.CommandText = sql +
+                        "AND " + sqlFecha +
+                        "AND " + sqlCedula +
+                        "AND " + sqlHora;
+                    }
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        c = new Cita();
-                        pa = new Paciente();
-                        o = new Odontologo();
+                         c = new Cita();
+                         pa = new Paciente();
+                         o = new Odontologo();
 
-                        c.Id_cita = Convert.ToInt32(dr["id_cita"]);
-                        pa.Nombre = dr["paciente"].ToString();
-                        c.Paciente.Nombre = pa.Nombre;
-                        o.Nombre = dr["odontologo"].ToString();
-                        c.Odontologo.Nombre = o.Nombre;
-                        c.Fecha = DateTime.Parse(dr["fecha"].ToString());
-                        string hour = dr["hora"].ToString();
-                        c.Hora = DateTime.ParseExact(hour, "HH:mm:ss", CultureInfo.InvariantCulture);
-                        o.Consultorio = Convert.ToInt32(dr["consultorio"]);
-                        c.Odontologo.Consultorio = o.Consultorio;
-                        citas.Add(c);
+                         c.Id_cita = Convert.ToInt32(dr["id_cita"]);
+                         pa.Cedula = dr["cedula"].ToString();
+                         c.Paciente.Cedula = pa.Cedula;
+                         pa.Nombre = dr["paciente"].ToString();
+                         c.Paciente.Nombre = pa.Nombre;
+                         o.Nombre = dr["odontologo"].ToString();
+                         c.Odontologo.Nombre = o.Nombre;
+                         c.Fecha = DateTime.Parse(dr["fecha"].ToString());
+                         string hour = dr["hora"].ToString();
+                         c.Hora = DateTime.ParseExact(hour, "HH:mm:ss", CultureInfo.InvariantCulture);
+                         o.Consultorio = Convert.ToInt32(dr["consultorio"]);
+                         c.Odontologo.Consultorio = o.Consultorio;
+                         citas.Add(c);
                     }
                 }
                 catch (Exception ex)
@@ -202,7 +230,8 @@ namespace Datos
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio \n" +
+            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, " +
+                         "C.hora, O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
@@ -275,11 +304,9 @@ namespace Datos
         public string EditarCitas(Cita c)
         {
             string mensaje = "";
-            /*Cita c = null;
-            Odontologo o = null;
-            Paciente pa = null;*/
             string sql = "UPDATE Cita \n" +
-                         "SET id_paciente = '"+c.Paciente.Id_persona+ "' , id_odontologo = '" + c.Odontologo.Id_persona + "'," +
+                         "SET id_paciente = '"+c.Paciente.Id_persona+ "' , id_odontologo = '" 
+                         + c.Odontologo.Id_persona + "'," +
                          "fecha = '" + c.Fecha + "'," +
                          "hora = '" + c.Hora + "'\n" +
                          "WHERE id_cita = '" + c.Id_cita + "'";
@@ -302,6 +329,44 @@ namespace Datos
             }
             con.Cerrar();
             return mensaje;
+        }
+
+        public bool ConsultarCitasExistentes(string cedula, DateTime fecha, DateTime hora)
+        {
+            bool flag = true;
+            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
+                         "O.consultorio \n" +
+                         "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
+                         "WHERE P1.id_persona = C.id_paciente \n" +
+                         "AND P2.id_persona = C.id_odontologo \n" +
+                         "AND C.id_odontologo = O.consultorio \n" +
+                         "AND P1.cedula = '" + cedula + "'\n" +
+                         "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'\n" +
+                         "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'";
+            SqlDataReader dr = null;
+            Console.WriteLine(sql);
+            string mensaje = "";
+            mensaje = con.Conectar();
+            if (mensaje[0] == '1')
+            {
+                try
+                {
+                    cmd.Connection = con.Cn;
+                    cmd.CommandText = sql;
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        flag = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al consultar en la tabla Cita " + ex.Message);
+                    flag = false;
+                }
+            }
+            con.Cerrar();
+            return flag;
         }
 
         /*public List<Cita> FiltrarCitas(DateTime hora, DateTime fecha)

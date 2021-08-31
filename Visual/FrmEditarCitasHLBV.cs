@@ -12,7 +12,6 @@ namespace Visual
 {
     public partial class FrmEditarCitasHLBV : Form
     {
-        AdmPacienteHLBV admPa = new AdmPacienteHLBV();
         AdmOdontologoHLBV admO = AdmOdontologoHLBV.GetAdm();
         AdmCitaHLBV admCita = AdmCitaHLBV.GetAdm();
         public FrmEditarCitasHLBV()
@@ -61,13 +60,6 @@ namespace Visual
             }
         }
 
-        private void dgvCitas_CurrentCellChanged(object sender, EventArgs e)
-        {
-            /*int posicion = dgvCitas.CurrentRow.Index;
-            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
-            admCita.ActualizarDatos(dgvCitas, posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);*/
-        }
-
         private void cmbOdontologo_SelectedValueChanged(object sender, EventArgs e)
         {
             string odontologo = (string)cmbOdontologo.SelectedItem;
@@ -87,7 +79,7 @@ namespace Visual
         {
             int posicion = dgvCitas.CurrentRow.Index;
             int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
-            admCita.ActualizarDatos(dgvCitas, posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
+            admCita.ActualizarDatos(posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
     }
 }

@@ -133,7 +133,7 @@ namespace Visual
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(81, 30);
             this.btnMostrar.TabIndex = 20;
-            this.btnMostrar.Text = "Mostrar";
+            this.btnMostrar.Text = "Mostrar todo";
             this.btnMostrar.UseVisualStyleBackColor = true;
             this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
@@ -141,7 +141,7 @@ namespace Visual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 487);
+            this.ClientSize = new System.Drawing.Size(710, 487);
             this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnFiltrar);

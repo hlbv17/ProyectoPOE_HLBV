@@ -36,12 +36,13 @@ namespace Control
             return admO;
         }
 
-        public void ConsultarOdontologos(DateTime fecha, DateTime hora, ComboBox cmbHora, ComboBox cmbOdontologo)
+        public void ConsultarOdontologos(DateTime fecha, DateTime hora, ComboBox cmbHora, 
+            ComboBox cmbOdontologo)
         {
-            //string nombre = "";
             string dia = DayOfWeek(fecha);
             if (cmbHora.Text != "--Seleccionar--")
             {
+                cmbOdontologo.Items.Add("--Seleccionar--");
                 odontologos = datosOdonto.ConsultarOdontologos(dia, hora);
                 foreach(Odontologo x in odontologos)
                 {
@@ -54,11 +55,6 @@ namespace Control
                 MessageBox.Show("No existe un odontologo disponible");
             }
         }
-
-        /*public void IndiceOdontologo()
-        {
-
-        }*/
 
         public string DayOfWeek(DateTime? date)
         {

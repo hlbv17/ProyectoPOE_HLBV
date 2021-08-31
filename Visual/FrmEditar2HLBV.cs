@@ -10,44 +10,41 @@ using System.Windows.Forms;
 
 namespace Visual
 {
-    public partial class FrmRegistrarCitaHLBV : Form
+    public partial class FrmEditar2HLBV : Form
     {
-        AdmPacienteHLBV admPa = new AdmPacienteHLBV();
-        AdmOdontologoHLBV admO =  AdmOdontologoHLBV.GetAdm();
+        AdmOdontologoHLBV admO = AdmOdontologoHLBV.GetAdm();
         AdmCitaHLBV admCita = AdmCitaHLBV.GetAdm();
-        public FrmRegistrarCitaHLBV()
+        public FrmEditar2HLBV(DataGridView dgvCitas)
         {
             InitializeComponent();
-            admCita.llenarComboH(cmbHora);
-            cmbHora.SelectedIndex = 0;
+            txtCedula.Enabled = false;
+            int posicion = dgvCitas.CurrentRow.Index;
+            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
+            admCita.ActualizarDatos(posicion, id, txtCedula, lblPaciente, dtpFecha, cmbHora, 
+                cmbOdontologo, lblConsultorio);
         }
 
-        private void txtPaciente_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnRegresar_Click(object sender, EventArgs e)
         {
-            char c = e.KeyChar;
-            if(!char.IsDigit(c) && (e.KeyChar != Convert.ToChar(Keys.Back))){
-                if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtPaciente.Text.Length >= 10)
-                    admPa.ConsultarPacientes(txtPaciente.Text, lblNombre);
-                else
-                {
-                    e.Handled = true;
-                    return;
-                }
-            }
+            FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
+            frmF = new FrmFiltrarCitasHLBV();
+            frmF.Visible = true;
+            this.Visible = false;
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void btnActualizar_Click(object sender, EventArgs e)
         {
-            string cedula = txtPaciente.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
+            string cedula = txtCedula.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
             DateTime fecha = dtpFecha.Value.Date;
             DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
             errorP.Clear();
-            if (admCita.Validar(txtPaciente, cmbHora, cmbOdontologo, errorP))
+            if (admCita.Validar(txtCedula, cmbHora, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.guardar(1, cedula, odontologo, fecha, dHora);
+                admCita.Editar(1, cedula, odontologo, fecha, dHora);
                 admCita.agregar(txtRegistro);
             }
+            
         }
 
         private void cmbHora_SelectedValueChanged(object sender, EventArgs e)

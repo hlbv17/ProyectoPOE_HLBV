@@ -235,7 +235,6 @@ namespace Visual
             this.dgvCitas.Name = "dgvCitas";
             this.dgvCitas.Size = new System.Drawing.Size(376, 158);
             this.dgvCitas.TabIndex = 16;
-            this.dgvCitas.CurrentCellChanged += new System.EventHandler(this.dgvCitas_CurrentCellChanged);
             // 
             // col_id
             // 

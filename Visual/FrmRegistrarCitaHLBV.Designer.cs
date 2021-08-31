@@ -224,7 +224,7 @@ namespace Visual
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmRegistrarCitaHLBV";
-            this.Text = "RegistrarCita";
+            this.Text = "RegistrarCitaHLBV";
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

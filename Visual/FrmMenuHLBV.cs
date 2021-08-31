@@ -44,7 +44,9 @@ namespace Visual
         private void consultarToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
+            this.Visible = false;
             frmF.ShowDialog();
+            
         }
 
         private void eliminarToolStripMenuItem2_Click(object sender, EventArgs e)

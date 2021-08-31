@@ -36,6 +36,7 @@ namespace Visual
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@ namespace Visual
             this.col_hora,
             this.col_odontologo,
             this.col_consultorio});
-            this.dgvCitas.Location = new System.Drawing.Point(33, 48);
+            this.dgvCitas.Location = new System.Drawing.Point(38, 90);
             this.dgvCitas.Name = "dgvCitas";
             this.dgvCitas.Size = new System.Drawing.Size(643, 315);
             this.dgvCitas.TabIndex = 0;
@@ -84,16 +85,29 @@ namespace Visual
             this.col_consultorio.HeaderText = "Consultorio";
             this.col_consultorio.Name = "col_consultorio";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(235, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(201, 29);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Listado de Citas";
+            // 
             // FrmListarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 450);
+            this.ClientSize = new System.Drawing.Size(720, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvCitas);
             this.Name = "FrmListarCitasHLBV";
             this.Text = "FrmListarCitasHLBV";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -106,5 +120,6 @@ namespace Visual
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
+        private System.Windows.Forms.Label label5;
     }
 }

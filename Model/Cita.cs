@@ -37,6 +37,7 @@ namespace Model {
 
         public override string ToString () {
             return
+                "\r\nCédula: " + paciente.Cedula +
                 "\r\nPaciente: " + paciente.Nombre +
                 "\r\nFecha: " + fecha.ToString("yyyy-MM-dd") +
                 "\r\nHora: " + hora.ToString("HH:mm:ss") +

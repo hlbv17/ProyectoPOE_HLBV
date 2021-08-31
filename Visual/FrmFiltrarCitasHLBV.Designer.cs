@@ -30,6 +30,13 @@ namespace Visual
         private void InitializeComponent()
         {
             this.dgvCitas = new System.Windows.Forms.DataGridView();
+            this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -37,12 +44,12 @@ namespace Visual
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCedula = new System.Windows.Forms.TextBox();
-            this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMostrar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnRegresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,81 +58,29 @@ namespace Visual
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_id,
+            this.colCedula,
             this.col_paciente,
             this.col_fecha,
             this.col_hora,
             this.col_odontologo,
             this.col_consultorio});
-            this.dgvCitas.Location = new System.Drawing.Point(89, 146);
+            this.dgvCitas.Location = new System.Drawing.Point(30, 202);
             this.dgvCitas.Name = "dgvCitas";
-            this.dgvCitas.Size = new System.Drawing.Size(564, 315);
+            this.dgvCitas.Size = new System.Drawing.Size(653, 292);
             this.dgvCitas.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(222, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Fecha";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(524, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Hora";
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Location = new System.Drawing.Point(274, 36);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 20);
-            this.dtpFecha.TabIndex = 6;
-            // 
-            // cmbHora
-            // 
-            this.cmbHora.FormattingEnabled = true;
-            this.cmbHora.Location = new System.Drawing.Point(565, 35);
-            this.cmbHora.Name = "cmbHora";
-            this.cmbHora.Size = new System.Drawing.Size(121, 21);
-            this.cmbHora.TabIndex = 7;
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Location = new System.Drawing.Point(311, 83);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(81, 30);
-            this.btnFiltrar.TabIndex = 8;
-            this.btnFiltrar.Text = "Filtrar";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Cédula";
-            // 
-            // txtCedula
-            // 
-            this.txtCedula.Location = new System.Drawing.Point(89, 35);
-            this.txtCedula.MaxLength = 10;
-            this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(100, 20);
-            this.txtCedula.TabIndex = 10;
             // 
             // col_id
             // 
             this.col_id.HeaderText = "ID";
             this.col_id.Name = "col_id";
             this.col_id.Width = 50;
+            // 
+            // colCedula
+            // 
+            this.colCedula.HeaderText = "Cédula";
+            this.colCedula.MaxInputLength = 10;
+            this.colCedula.Name = "colCedula";
+            this.colCedula.ReadOnly = true;
             // 
             // col_paciente
             // 
@@ -152,12 +107,143 @@ namespace Visual
             // 
             this.col_consultorio.HeaderText = "Consultorio";
             this.col_consultorio.Name = "col_consultorio";
+            this.col_consultorio.Width = 90;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(270, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Fecha";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(572, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Hora";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Location = new System.Drawing.Point(322, 86);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha.TabIndex = 6;
+            // 
+            // cmbHora
+            // 
+            this.cmbHora.FormattingEnabled = true;
+            this.cmbHora.Location = new System.Drawing.Point(613, 85);
+            this.cmbHora.Name = "cmbHora";
+            this.cmbHora.Size = new System.Drawing.Size(121, 21);
+            this.cmbHora.TabIndex = 7;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(441, 137);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(81, 30);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(78, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Cédula";
+            // 
+            // txtCedula
+            // 
+            this.txtCedula.Location = new System.Drawing.Point(137, 85);
+            this.txtCedula.MaxLength = 10;
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(100, 20);
+            this.txtCedula.TabIndex = 10;
+            // 
+            // btnMostrar
+            // 
+            this.btnMostrar.Location = new System.Drawing.Point(721, 389);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(81, 30);
+            this.btnMostrar.TabIndex = 11;
+            this.btnMostrar.Text = "Mostrar todo";
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(249, 137);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(125, 30);
+            this.btnLimpiar.TabIndex = 12;
+            this.btnLimpiar.Text = "Limpiar campos";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(721, 318);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(81, 30);
+            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(721, 248);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(81, 30);
+            this.btnEditar.TabIndex = 14;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(317, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(191, 29);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Consulta tu cita";
+            // 
+            // btnRegresar
+            // 
+            this.btnRegresar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegresar.Location = new System.Drawing.Point(30, 12);
+            this.btnRegresar.Name = "btnRegresar";
+            this.btnRegresar.Size = new System.Drawing.Size(58, 37);
+            this.btnRegresar.TabIndex = 32;
+            this.btnRegresar.Text = "Ir al menú";
+            this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // FrmFiltrarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 501);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(838, 529);
+            this.Controls.Add(this.btnRegresar);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFiltrar);
@@ -184,11 +270,18 @@ namespace Visual
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCedula;
+        private System.Windows.Forms.Button btnMostrar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnRegresar;
     }
 }
