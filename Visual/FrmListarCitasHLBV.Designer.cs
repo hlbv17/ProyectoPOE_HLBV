@@ -70,7 +70,7 @@ namespace Visual
             // 
             // col_id
             // 
-            this.col_id.HeaderText = "ID";
+            this.col_id.HeaderText = "Nº";
             this.col_id.Name = "col_id";
             // 
             // colCedula

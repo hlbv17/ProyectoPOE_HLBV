@@ -30,13 +30,6 @@ namespace Visual
         private void InitializeComponent()
         {
             this.dgvCitas = new System.Windows.Forms.DataGridView();
-            this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -55,6 +48,13 @@ namespace Visual
             this.chbHora = new System.Windows.Forms.CheckBox();
             this.chbFecha = new System.Windows.Forms.CheckBox();
             this.chbCedula = new System.Windows.Forms.CheckBox();
+            this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -74,46 +74,6 @@ namespace Visual
             this.dgvCitas.Name = "dgvCitas";
             this.dgvCitas.Size = new System.Drawing.Size(653, 272);
             this.dgvCitas.TabIndex = 1;
-            // 
-            // col_id
-            // 
-            this.col_id.HeaderText = "ID";
-            this.col_id.Name = "col_id";
-            this.col_id.Width = 50;
-            // 
-            // colCedula
-            // 
-            this.colCedula.HeaderText = "Cédula";
-            this.colCedula.MaxInputLength = 10;
-            this.colCedula.Name = "colCedula";
-            this.colCedula.ReadOnly = true;
-            // 
-            // col_paciente
-            // 
-            this.col_paciente.HeaderText = "Paciente";
-            this.col_paciente.Name = "col_paciente";
-            // 
-            // col_fecha
-            // 
-            this.col_fecha.HeaderText = "Fecha";
-            this.col_fecha.Name = "col_fecha";
-            // 
-            // col_hora
-            // 
-            this.col_hora.HeaderText = "Hora";
-            this.col_hora.Name = "col_hora";
-            this.col_hora.Width = 70;
-            // 
-            // col_odontologo
-            // 
-            this.col_odontologo.HeaderText = "Odontólogo";
-            this.col_odontologo.Name = "col_odontologo";
-            // 
-            // col_consultorio
-            // 
-            this.col_consultorio.HeaderText = "Consultorio";
-            this.col_consultorio.Name = "col_consultorio";
-            this.col_consultorio.Width = 90;
             // 
             // label2
             // 
@@ -299,6 +259,46 @@ namespace Visual
             this.chbCedula.UseVisualStyleBackColor = true;
             this.chbCedula.CheckedChanged += new System.EventHandler(this.chbCedula_CheckedChanged);
             // 
+            // col_id
+            // 
+            this.col_id.HeaderText = "Nº";
+            this.col_id.Name = "col_id";
+            this.col_id.Width = 50;
+            // 
+            // colCedula
+            // 
+            this.colCedula.HeaderText = "Cédula";
+            this.colCedula.MaxInputLength = 10;
+            this.colCedula.Name = "colCedula";
+            this.colCedula.ReadOnly = true;
+            // 
+            // col_paciente
+            // 
+            this.col_paciente.HeaderText = "Paciente";
+            this.col_paciente.Name = "col_paciente";
+            // 
+            // col_fecha
+            // 
+            this.col_fecha.HeaderText = "Fecha";
+            this.col_fecha.Name = "col_fecha";
+            // 
+            // col_hora
+            // 
+            this.col_hora.HeaderText = "Hora";
+            this.col_hora.Name = "col_hora";
+            this.col_hora.Width = 70;
+            // 
+            // col_odontologo
+            // 
+            this.col_odontologo.HeaderText = "Odontólogo";
+            this.col_odontologo.Name = "col_odontologo";
+            // 
+            // col_consultorio
+            // 
+            this.col_consultorio.HeaderText = "Consultorio";
+            this.col_consultorio.Name = "col_consultorio";
+            this.col_consultorio.Width = 90;
+            // 
             // FrmFiltrarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,13 +345,6 @@ namespace Visual
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Button btnImprimir;
@@ -359,5 +352,12 @@ namespace Visual
         private System.Windows.Forms.CheckBox chbHora;
         private System.Windows.Forms.CheckBox chbFecha;
         private System.Windows.Forms.CheckBox chbCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
     }
 }

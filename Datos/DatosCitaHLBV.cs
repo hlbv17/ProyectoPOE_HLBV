@@ -351,7 +351,7 @@ namespace Datos
         public bool ConsultarCitasExistentes(string cedula, DateTime fecha, DateTime hora)
         {
             bool flag = true;
-            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
+            string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
                          "O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
@@ -366,21 +366,14 @@ namespace Datos
             mensaje = con.Conectar();
             if (mensaje[0] == '1')
             {
-                try
+                cmd.Connection = con.Cn;
+                cmd.CommandText = sql;
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
                 {
-                    cmd.Connection = con.Cn;
-                    cmd.CommandText = sql;
-                    dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        flag = true;
-                    }
+                    flag = true;
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al consultar en la tabla Cita " + ex.Message);
-                    flag = false;
-                }
+                flag = false;
             }
             con.Cerrar();
             return flag;

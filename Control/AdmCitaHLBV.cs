@@ -110,17 +110,16 @@ namespace Control
             Cita c = null;
             Paciente pa = null;
             Odontologo o = null;
-            if (dCita.ConsultarCitasExistentes(cedula, fecha, hora)) {
-                MessageBox.Show("La cita ya existe");
-
-            }
-            else
-            {
+            if (dCita.ConsultarCitasExistentes(cedula, fecha, hora) == false) {
                 pa = dPaciente.ConsultarPacienteNombre(cedula);
                 o = dOdontologo.ConsultarOdontologo(odonto);
                 c = new Cita(id_cita, fecha, hora, o, pa);
                 citas.Add(c);
                 guardarBD(c, pa);
+            }
+            else
+            {
+                MessageBox.Show("La cita ya existe");
             }
             
         }
@@ -138,6 +137,7 @@ namespace Control
                 MessageBox.Show("Error: " + mensaje);
         }
 
+
         public void agregar(TextBox txtRegistro)
         {
             if(citas.Count != 0)
@@ -146,29 +146,34 @@ namespace Control
 
         public void LlenarTabla(DataGridView dgvCitas)
         {
+            int i = 1; 
             citas.Clear();
             Citas = dCita.ListarCitas();
             foreach (Cita c in citas)
             {
-                dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
+                dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
-            
+                i++;
             }
+            
         }
 
         public void FiltrarDatos(DataGridView dgvCitas, string cedula, DateTime fecha, string hora, int n, Button btnImprimir)
         {
             citas.Clear();
+            int i = 1;
             citas = dCita.ConsultarCitas(cedula, fecha, hora, n);
             dgvCitas.Rows.Clear();
             if (citas.Count != 0)
             {
                 foreach (Cita c in citas)
                 {
-                    dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre, 
+                    dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, 
                         c.Fecha.ToString("yyyy-MM-dd"), c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, 
                         c.Odontologo.Consultorio);
+                    i++;
                 }
+                
                 btnImprimir.Enabled = true;
             }
             else
@@ -182,25 +187,39 @@ namespace Control
         public void FiltrarDatos(DataGridView dgvCitas, DateTime fecha)
         {
             citas.Clear();
+            int i = 1;
             citas = dCita.ConsultarCitasF(fecha);
             dgvCitas.Rows.Clear();
             foreach (Cita c in citas)
             {
-                dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
+                dgvCitas.Rows.Add(i, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
+                i++;
             }
         }
 
-        public void BuscarDatos(DataGridView dgvCitas, string cedula)
+        public void BuscarDatos(DataGridView dgvCitas, string cedula, TextBox txtCedula, DateTimePicker dtpFecha, 
+            ComboBox cmbHora, ComboBox cmbOdontologo)
         {
+            int i = 1;
             citas.Clear();
             citas = dCita.ConsultarCitasxCedula(cedula);
             dgvCitas.Rows.Clear();
-            foreach (Cita c in citas)
+            if (citas.Count != 0)
             {
-                dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre,c.Fecha.ToString("yyyy-MM-dd"), 
-                    c.Hora.ToString("HH:ss"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
+                foreach (Cita c in citas)
+                {
+                    dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre,c.Fecha.ToString("yyyy-MM-dd"), 
+                        c.Hora.ToString("HH:ss"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
+                    i++;
+                }
+                DesbloquearCampos(txtCedula, dtpFecha, cmbHora, cmbOdontologo);
             }
+            else
+            {
+                MessageBox.Show("No existe esa cédula");
+            }
+            
         }
 
         public void ActualizarDatos(int posicion, int id, Label lblPaciente, DateTimePicker dtpFecha, 
@@ -334,6 +353,9 @@ namespace Control
             txtCedula.Text = "";
             cmbHora.SelectedIndex = 0;
             cmbOdontologo.Items.Clear();
+            cmbOdontologo.Items.Add("--Seleccionar--");
+            cmbOdontologo.SelectedIndex = 0;
+            cmbOdontologo.Enabled = false;
             dtpFecha.Value = DateTime.Now;
             lblNombre.Text = "____________________";
             lblConsultorio.Text = "___";

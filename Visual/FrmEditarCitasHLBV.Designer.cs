@@ -47,6 +47,9 @@ namespace Visual
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvCitas = new System.Windows.Forms.DataGridView();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,9 +57,6 @@ namespace Visual
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).BeginInit();
             this.SuspendLayout();
@@ -236,9 +236,32 @@ namespace Visual
             this.dgvCitas.Size = new System.Drawing.Size(376, 158);
             this.dgvCitas.TabIndex = 16;
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(154, 348);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(109, 36);
+            this.btnModificar.TabIndex = 17;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(431, 412);
+            this.splitter1.TabIndex = 18;
+            this.splitter1.TabStop = false;
+            // 
+            // errorP
+            // 
+            this.errorP.ContainerControl = this;
+            // 
             // col_id
             // 
-            this.col_id.HeaderText = "ID";
+            this.col_id.HeaderText = "Nº";
             this.col_id.Name = "col_id";
             this.col_id.ReadOnly = true;
             this.col_id.Width = 50;
@@ -278,29 +301,6 @@ namespace Visual
             this.col_consultorio.HeaderText = "Consultorio";
             this.col_consultorio.Name = "col_consultorio";
             this.col_consultorio.ReadOnly = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(154, 348);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(109, 36);
-            this.btnModificar.TabIndex = 17;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(431, 412);
-            this.splitter1.TabIndex = 18;
-            this.splitter1.TabStop = false;
-            // 
-            // errorP
-            // 
-            this.errorP.ContainerControl = this;
             // 
             // FrmEditarCitasHLBV
             // 
@@ -354,6 +354,9 @@ namespace Visual
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView dgvCitas;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.ErrorProvider errorP;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
@@ -361,8 +364,5 @@ namespace Visual
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.ErrorProvider errorP;
     }
 }

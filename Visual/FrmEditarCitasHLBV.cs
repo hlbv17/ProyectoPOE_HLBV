@@ -36,8 +36,7 @@ namespace Visual
             string cedula = txtCedula.Text;
             DateTime fecha = dtpFecha.Value.Date;
             admCita.llenarComboH(cmbHora);
-            admCita.BuscarDatos(dgvCitas, cedula);
-            admCita.DesbloquearCampos(txtCedula, dtpFecha, cmbHora, cmbOdontologo);
+            admCita.BuscarDatos(dgvCitas, cedula, txtCedula, dtpFecha, cmbHora, cmbOdontologo);
            
         }
 
