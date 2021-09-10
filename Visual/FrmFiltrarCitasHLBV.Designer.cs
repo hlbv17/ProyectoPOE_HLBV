@@ -50,7 +50,13 @@ namespace Visual
             this.btnEditar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRegresar = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbHora = new System.Windows.Forms.CheckBox();
+            this.chbFecha = new System.Windows.Forms.CheckBox();
+            this.chbCedula = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCitas
@@ -64,9 +70,9 @@ namespace Visual
             this.col_hora,
             this.col_odontologo,
             this.col_consultorio});
-            this.dgvCitas.Location = new System.Drawing.Point(30, 202);
+            this.dgvCitas.Location = new System.Drawing.Point(30, 228);
             this.dgvCitas.Name = "dgvCitas";
-            this.dgvCitas.Size = new System.Drawing.Size(653, 292);
+            this.dgvCitas.Size = new System.Drawing.Size(653, 272);
             this.dgvCitas.TabIndex = 1;
             // 
             // col_id
@@ -112,7 +118,7 @@ namespace Visual
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(270, 89);
+            this.label2.Location = new System.Drawing.Point(227, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 3;
@@ -121,7 +127,7 @@ namespace Visual
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(572, 89);
+            this.label3.Location = new System.Drawing.Point(501, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 4;
@@ -129,22 +135,24 @@ namespace Visual
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(322, 86);
+            this.dtpFecha.Enabled = false;
+            this.dtpFecha.Location = new System.Drawing.Point(279, 106);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(200, 20);
             this.dtpFecha.TabIndex = 6;
             // 
             // cmbHora
             // 
+            this.cmbHora.Enabled = false;
             this.cmbHora.FormattingEnabled = true;
-            this.cmbHora.Location = new System.Drawing.Point(613, 85);
+            this.cmbHora.Location = new System.Drawing.Point(542, 106);
             this.cmbHora.Name = "cmbHora";
             this.cmbHora.Size = new System.Drawing.Size(121, 21);
             this.cmbHora.TabIndex = 7;
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(441, 137);
+            this.btnFiltrar.Location = new System.Drawing.Point(427, 169);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(81, 30);
             this.btnFiltrar.TabIndex = 8;
@@ -155,7 +163,7 @@ namespace Visual
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 89);
+            this.label1.Location = new System.Drawing.Point(35, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 9;
@@ -163,7 +171,8 @@ namespace Visual
             // 
             // txtCedula
             // 
-            this.txtCedula.Location = new System.Drawing.Point(137, 85);
+            this.txtCedula.Enabled = false;
+            this.txtCedula.Location = new System.Drawing.Point(94, 105);
             this.txtCedula.MaxLength = 10;
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(100, 20);
@@ -171,7 +180,7 @@ namespace Visual
             // 
             // btnMostrar
             // 
-            this.btnMostrar.Location = new System.Drawing.Point(721, 389);
+            this.btnMostrar.Location = new System.Drawing.Point(722, 364);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(81, 30);
             this.btnMostrar.TabIndex = 11;
@@ -181,7 +190,7 @@ namespace Visual
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(249, 137);
+            this.btnLimpiar.Location = new System.Drawing.Point(235, 169);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(125, 30);
             this.btnLimpiar.TabIndex = 12;
@@ -191,7 +200,7 @@ namespace Visual
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(721, 318);
+            this.btnEliminar.Location = new System.Drawing.Point(722, 308);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(81, 30);
             this.btnEliminar.TabIndex = 13;
@@ -201,7 +210,7 @@ namespace Visual
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(721, 248);
+            this.btnEditar.Location = new System.Drawing.Point(722, 249);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(81, 30);
             this.btnEditar.TabIndex = 14;
@@ -232,12 +241,72 @@ namespace Visual
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Location = new System.Drawing.Point(722, 422);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(81, 30);
+            this.btnImprimir.TabIndex = 33;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chbHora);
+            this.groupBox1.Controls.Add(this.chbFecha);
+            this.groupBox1.Controls.Add(this.chbCedula);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox1.Location = new System.Drawing.Point(691, 51);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(135, 107);
+            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtrar por:";
+            // 
+            // chbHora
+            // 
+            this.chbHora.AutoSize = true;
+            this.chbHora.Location = new System.Drawing.Point(7, 81);
+            this.chbHora.Name = "chbHora";
+            this.chbHora.Size = new System.Drawing.Size(54, 20);
+            this.chbHora.TabIndex = 2;
+            this.chbHora.Text = "hora";
+            this.chbHora.UseVisualStyleBackColor = true;
+            this.chbHora.CheckedChanged += new System.EventHandler(this.chbHora_CheckedChanged);
+            // 
+            // chbFecha
+            // 
+            this.chbFecha.AutoSize = true;
+            this.chbFecha.Location = new System.Drawing.Point(7, 55);
+            this.chbFecha.Name = "chbFecha";
+            this.chbFecha.Size = new System.Drawing.Size(60, 20);
+            this.chbFecha.TabIndex = 1;
+            this.chbFecha.Text = "fecha";
+            this.chbFecha.UseVisualStyleBackColor = true;
+            this.chbFecha.CheckedChanged += new System.EventHandler(this.chbFecha_CheckedChanged);
+            // 
+            // chbCedula
+            // 
+            this.chbCedula.AutoSize = true;
+            this.chbCedula.Location = new System.Drawing.Point(7, 29);
+            this.chbCedula.Name = "chbCedula";
+            this.chbCedula.Size = new System.Drawing.Size(68, 20);
+            this.chbCedula.TabIndex = 0;
+            this.chbCedula.Text = "cédula";
+            this.chbCedula.UseVisualStyleBackColor = true;
+            this.chbCedula.CheckedChanged += new System.EventHandler(this.chbCedula_CheckedChanged);
+            // 
             // FrmFiltrarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(838, 529);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnEditar);
@@ -255,6 +324,8 @@ namespace Visual
             this.Name = "FrmFiltrarCitasHLBV";
             this.Text = "FrmFiltrarCitasHLBV";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,5 +354,10 @@ namespace Visual
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRegresar;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chbHora;
+        private System.Windows.Forms.CheckBox chbFecha;
+        private System.Windows.Forms.CheckBox chbCedula;
     }
 }

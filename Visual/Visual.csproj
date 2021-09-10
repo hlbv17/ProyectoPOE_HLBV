@@ -32,8 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +87,12 @@
     <Compile Include="FrmMenuHLBV.Designer.cs">
       <DependentUpon>FrmMenuHLBV.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmReporteCitaHLBV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReporteCitaHLBV.Designer.cs">
+      <DependentUpon>FrmReporteCitaHLBV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FrmRegistrarCitaHLBV.cs">
@@ -87,6 +100,12 @@
     </Compile>
     <Compile Include="FrmRegistrarCitaHLBV.Designer.cs">
       <DependentUpon>FrmRegistrarCitaHLBV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteCitas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteCitas.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="FrmEditar2HLBV.resx">
       <DependentUpon>FrmEditar2HLBV.cs</DependentUpon>
@@ -109,6 +128,9 @@
     <EmbeddedResource Include="FrmRegistrarCitaHLBV.resx">
       <DependentUpon>FrmRegistrarCitaHLBV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmReporteCitaHLBV.resx">
+      <DependentUpon>FrmReporteCitaHLBV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,6 +140,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReporteCitas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteCitas.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,6 +159,17 @@
       <Project>{3297a832-06e0-453f-a821-1345498f07ca}</Project>
       <Name>Control</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{7195047d-4225-49c1-aefb-70a540bc3b5c}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{434549b4-2044-4533-94d9-e1a1c1c13fb3}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

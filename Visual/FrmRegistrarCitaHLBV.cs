@@ -20,6 +20,7 @@ namespace Visual
             InitializeComponent();
             admCita.llenarComboH(cmbHora);
             cmbHora.SelectedIndex = 0;
+            cmbOdontologo.Enabled = false;
         }
 
         private void txtPaciente_KeyPress(object sender, KeyPressEventArgs e)
@@ -54,15 +55,25 @@ namespace Visual
         {
             string hora = cmbHora.Text;
             DateTime fecha = dtpFecha.Value.Date;
-            DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
-            cmbOdontologo.Items.Clear();
-            admO.llenarComboO(fecha, dHora, cmbHora, cmbOdontologo);
+            if(hora != "--Seleccionar--")
+            {
+                cmbOdontologo.Enabled = true;
+                DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
+                cmbOdontologo.Items.Clear();
+                admO.llenarComboO(fecha, dHora, cmbHora, cmbOdontologo);
+            }
+            
         }
 
         private void cmbOdontologo_SelectedValueChanged(object sender, EventArgs e)
         {
             string odontologo = (string)cmbOdontologo.SelectedItem;
             admO.LabelConsultorio(odontologo, cmbOdontologo, lblConsultorio);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            admCita.LimpiarCamposR(txtPaciente, lblNombre, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio, txtRegistro);
         }
     }
 }

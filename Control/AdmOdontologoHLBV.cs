@@ -43,6 +43,7 @@ namespace Control
             if (cmbHora.Text != "--Seleccionar--")
             {
                 cmbOdontologo.Items.Add("--Seleccionar--");
+                cmbOdontologo.SelectedIndex = 0;
                 odontologos = datosOdonto.ConsultarOdontologos(dia, hora);
                 foreach(Odontologo x in odontologos)
                 {
@@ -69,9 +70,15 @@ namespace Control
         public void LabelConsultorio(string nombre, ComboBox cmbOdontologo, Label lblConsultorio)
         {
             int indice = 0, label = 0;
+            
             indice = odontologos.FindIndex(x => x.Nombre == nombre);
-            label = odontologos[indice].Consultorio;
-            lblConsultorio.Text = label.ToString();
+            if(indice >= 0)
+            {
+                label = odontologos[indice].Consultorio;
+                lblConsultorio.Text = label.ToString();
+
+            }
+            
         }
     }
 }

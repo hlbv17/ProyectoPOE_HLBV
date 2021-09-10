@@ -46,6 +46,7 @@ namespace Visual
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtRegistro = new System.Windows.Forms.TextBox();
             this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,7 +152,7 @@ namespace Visual
             this.btnRegistrar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.Location = new System.Drawing.Point(160, 359);
+            this.btnRegistrar.Location = new System.Drawing.Point(71, 359);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(85, 30);
             this.btnRegistrar.TabIndex = 10;
@@ -203,11 +204,25 @@ namespace Visual
             // 
             this.errorP.ContainerControl = this;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(210, 359);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(129, 30);
+            this.btnLimpiar.TabIndex = 15;
+            this.btnLimpiar.Text = "Limpiar campos";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // FrmRegistrarCitaHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 408);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.txtRegistro);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.label7);
@@ -249,5 +264,6 @@ namespace Visual
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtRegistro;
         private System.Windows.Forms.ErrorProvider errorP;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

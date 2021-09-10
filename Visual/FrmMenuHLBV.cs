@@ -54,5 +54,6 @@ namespace Visual
             FrmEliminarCitasHLBV frmEl = new FrmEliminarCitasHLBV();
             frmEl.ShowDialog();
         }
+
     }
 }

@@ -46,7 +46,7 @@ namespace Datos
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio\n" +
+            string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio\n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
@@ -69,6 +69,8 @@ namespace Datos
                         o = new Odontologo();
                         
                         c.Id_cita = Convert.ToInt32(dr["id_cita"]);
+                        pa.Cedula = dr["cedula"].ToString();
+                        c.Paciente.Cedula = pa.Cedula;
                         pa.Nombre = dr["paciente"].ToString();
                         c.Paciente.Nombre = pa.Nombre;
                         o.Nombre = dr["odontologo"].ToString();
@@ -144,13 +146,12 @@ namespace Datos
             return citas;
         }
 
-        public List<Cita> ConsultarCitas(string cedula, DateTime fecha, string hora)
+        public List<Cita> ConsultarCitas(string cedula, DateTime fecha, string hora, int n)
         {
             List<Cita> citas = new List<Cita>();
             Cita c = null;
             Odontologo o = null;
             Paciente pa = null;
-            int n = 0;
             string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
                          "O.consultorio \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
@@ -169,29 +170,45 @@ namespace Datos
                 try
                 {
                     cmd.Connection = con.Cn;
-                    if (hora == "--Seleccionar--" && cedula == "")
+                    if (n == 1)
+                    {
+                       cmd.CommandText = sql +
+                       "AND " + sqlCedula;
+                    }
+                    else if (n == 2)
                     {
                        cmd.CommandText = sql +
                        "AND " + sqlFecha;
                     }
-                    else if (hora == "--Seleccionar--" && cedula != "")
-                    {
-                       cmd.CommandText = sql +
-                       "AND " + sqlFecha +
-                       "AND " + sqlCedula;
-                    }
-                    else if (hora != "--Seleccionar--" && cedula == "")
+                    else if (n == 3)
                     {
                         cmd.CommandText = sql +
-                        "AND " + sqlFecha +
                         "AND " + sqlHora;
                     }
-                    else if (hora != "--Seleccionar--" && cedula != "")
+                    else if (n == 4)
                     {
                     cmd.CommandText = sql +
-                        "AND " + sqlFecha +
                         "AND " + sqlCedula +
                         "AND " + sqlHora;
+                    }
+                    else if (n == 5)
+                    {
+                        cmd.CommandText = sql +
+                            "AND " + sqlCedula +
+                            "AND " + sqlFecha;
+                    }
+                    else if (n == 6)
+                    {
+                        cmd.CommandText = sql +
+                            "AND " + sqlFecha +
+                            "AND " + sqlHora;
+                    }
+                    else if (n == 7)
+                    {
+                        cmd.CommandText = sql +
+                            "AND " + sqlCedula +
+                            "AND " + sqlFecha +
+                            "AND " + sqlHora;
                     }
                     dr = cmd.ExecuteReader();
                     while (dr.Read())

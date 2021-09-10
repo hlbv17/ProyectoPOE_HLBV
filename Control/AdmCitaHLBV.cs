@@ -150,16 +150,16 @@ namespace Control
             Citas = dCita.ListarCitas();
             foreach (Cita c in citas)
             {
-                dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
+                dgvCitas.Rows.Add(c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
             
             }
         }
 
-        public void FiltrarDatos(DataGridView dgvCitas, string cedula, DateTime fecha, string hora)
+        public void FiltrarDatos(DataGridView dgvCitas, string cedula, DateTime fecha, string hora, int n, Button btnImprimir)
         {
             citas.Clear();
-            citas = dCita.ConsultarCitas(cedula, fecha, hora);
+            citas = dCita.ConsultarCitas(cedula, fecha, hora, n);
             dgvCitas.Rows.Clear();
             if (citas.Count != 0)
             {
@@ -169,10 +169,12 @@ namespace Control
                         c.Fecha.ToString("yyyy-MM-dd"), c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, 
                         c.Odontologo.Consultorio);
                 }
+                btnImprimir.Enabled = true;
             }
             else
             {
                 MessageBox.Show("No existen citas con esos datos");
+                btnImprimir.Enabled = false;
             }        
         }
 
@@ -317,13 +319,27 @@ namespace Control
         }
 
         public void LimpiarCampos(TextBox txtCedula, DataGridView dgvCitas, DateTimePicker dtpFecha, 
-            ComboBox cmbHora)
+            ComboBox cmbHora, Button btnImprimir)
         {
             txtCedula.Text = "";
             cmbHora.SelectedIndex = 0;
             dtpFecha.Value = DateTime.Now;
             dgvCitas.Rows.Clear();
+            btnImprimir.Enabled = false;
         }
+
+        public void LimpiarCamposR(TextBox txtCedula, Label lblNombre, DateTimePicker dtpFecha,
+            ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio, TextBox txtRegistro)
+        {
+            txtCedula.Text = "";
+            cmbHora.SelectedIndex = 0;
+            cmbOdontologo.Items.Clear();
+            dtpFecha.Value = DateTime.Now;
+            lblNombre.Text = "____________________";
+            lblConsultorio.Text = "___";
+            txtRegistro.Text = "";
+        }
+
 
     }
 }

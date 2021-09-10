@@ -30,13 +30,14 @@ namespace Visual
         private void InitializeComponent()
         {
             this.dgvCitas = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@ namespace Visual
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_id,
+            this.colCedula,
             this.col_paciente,
             this.col_fecha,
             this.col_hora,
@@ -52,13 +54,30 @@ namespace Visual
             this.col_consultorio});
             this.dgvCitas.Location = new System.Drawing.Point(38, 90);
             this.dgvCitas.Name = "dgvCitas";
-            this.dgvCitas.Size = new System.Drawing.Size(643, 315);
+            this.dgvCitas.Size = new System.Drawing.Size(743, 315);
             this.dgvCitas.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(235, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(201, 29);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Listado de Citas";
             // 
             // col_id
             // 
             this.col_id.HeaderText = "ID";
             this.col_id.Name = "col_id";
+            // 
+            // colCedula
+            // 
+            this.colCedula.HeaderText = "Cédula";
+            this.colCedula.Name = "colCedula";
+            this.colCedula.ReadOnly = true;
             // 
             // col_paciente
             // 
@@ -85,22 +104,11 @@ namespace Visual
             this.col_consultorio.HeaderText = "Consultorio";
             this.col_consultorio.Name = "col_consultorio";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label5.Location = new System.Drawing.Point(235, 29);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 29);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Listado de Citas";
-            // 
             // FrmListarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 450);
+            this.ClientSize = new System.Drawing.Size(832, 450);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvCitas);
             this.Name = "FrmListarCitasHLBV";
@@ -114,12 +122,13 @@ namespace Visual
         #endregion
 
         private System.Windows.Forms.DataGridView dgvCitas;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
-        private System.Windows.Forms.Label label5;
     }
 }
