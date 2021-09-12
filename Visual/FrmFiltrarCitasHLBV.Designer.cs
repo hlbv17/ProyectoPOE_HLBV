@@ -42,14 +42,14 @@ namespace Visual
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnRegresar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chbHora = new System.Windows.Forms.CheckBox();
             this.chbFecha = new System.Windows.Forms.CheckBox();
             this.chbCedula = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +64,7 @@ namespace Visual
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_id,
-            this.colCedula,
+            this.col_cedula,
             this.col_paciente,
             this.col_fecha,
             this.col_hora,
@@ -189,18 +189,6 @@ namespace Visual
             this.label5.TabIndex = 28;
             this.label5.Text = "Consulta tu cita";
             // 
-            // btnRegresar
-            // 
-            this.btnRegresar.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegresar.Location = new System.Drawing.Point(30, 12);
-            this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(58, 37);
-            this.btnRegresar.TabIndex = 32;
-            this.btnRegresar.Text = "Ir al menú";
-            this.btnRegresar.UseVisualStyleBackColor = false;
-            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
-            // 
             // btnImprimir
             // 
             this.btnImprimir.Location = new System.Drawing.Point(722, 422);
@@ -259,18 +247,23 @@ namespace Visual
             this.chbCedula.UseVisualStyleBackColor = true;
             this.chbCedula.CheckedChanged += new System.EventHandler(this.chbCedula_CheckedChanged);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileName = "ReporteCitas";
+            this.saveFileDialog1.Filter = "Archivos PDF(*.pdf)|*.pdf";
+            // 
             // col_id
             // 
             this.col_id.HeaderText = "Nº";
             this.col_id.Name = "col_id";
             this.col_id.Width = 50;
             // 
-            // colCedula
+            // col_cedula
             // 
-            this.colCedula.HeaderText = "Cédula";
-            this.colCedula.MaxInputLength = 10;
-            this.colCedula.Name = "colCedula";
-            this.colCedula.ReadOnly = true;
+            this.col_cedula.HeaderText = "Cédula";
+            this.col_cedula.MaxInputLength = 10;
+            this.col_cedula.Name = "col_cedula";
+            this.col_cedula.ReadOnly = true;
             // 
             // col_paciente
             // 
@@ -307,7 +300,6 @@ namespace Visual
             this.ClientSize = new System.Drawing.Size(838, 529);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnImprimir);
-            this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
@@ -346,14 +338,14 @@ namespace Visual
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chbHora;
         private System.Windows.Forms.CheckBox chbFecha;
         private System.Windows.Forms.CheckBox chbCedula;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;

@@ -121,9 +121,10 @@ namespace Visual
             int posicion = dgvCitas.Rows.Count;
             if (posicion != 1)
             {
+                this.Close();
                 FrmEditar2HLBV frmE = new FrmEditar2HLBV(dgvCitas);
                 frmE.Visible = true;
-                this.Visible = false;
+                
             }
             else
             {
@@ -142,13 +143,6 @@ namespace Visual
             {
                 MessageBox.Show("No ha realizado la consulta");
             }
-        }
-
-        private void btnRegresar_Click(object sender, EventArgs e)
-        {
-            FrmMenuHLBV frmM = new FrmMenuHLBV();
-            frmM.Visible = true;
-            this.Visible = false;
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -184,8 +178,13 @@ namespace Visual
             {
                 n = 3;
             }
-            FrmReporteCitaHLBV frmR = new FrmReporteCitaHLBV(cedula, fecha, hora, n);
-            frmR.Visible = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string file = saveFileDialog1.FileName;
+                FrmReporteCitaHLBV frmR = new FrmReporteCitaHLBV(cedula, fecha, hora, n, file);
+                frmR.Visible = true;
+            }
+            
         }
 
         private void chbCedula_CheckedChanged(object sender, EventArgs e)

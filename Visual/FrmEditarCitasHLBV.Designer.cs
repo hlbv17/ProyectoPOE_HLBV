@@ -47,9 +47,6 @@ namespace Visual
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvCitas = new System.Windows.Forms.DataGridView();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +54,10 @@ namespace Visual
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtRegistro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +76,7 @@ namespace Visual
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(447, 189);
+            this.label2.Location = new System.Drawing.Point(460, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 1;
@@ -85,7 +86,7 @@ namespace Visual
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(447, 228);
+            this.label3.Location = new System.Drawing.Point(460, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 16);
             this.label3.TabIndex = 2;
@@ -95,7 +96,7 @@ namespace Visual
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(447, 151);
+            this.label4.Location = new System.Drawing.Point(460, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 16);
             this.label4.TabIndex = 3;
@@ -115,7 +116,7 @@ namespace Visual
             // 
             this.lblPaciente.AutoSize = true;
             this.lblPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaciente.Location = new System.Drawing.Point(563, 151);
+            this.lblPaciente.Location = new System.Drawing.Point(576, 29);
             this.lblPaciente.Name = "lblPaciente";
             this.lblPaciente.Size = new System.Drawing.Size(119, 15);
             this.lblPaciente.TabIndex = 5;
@@ -124,7 +125,7 @@ namespace Visual
             // dtpFecha
             // 
             this.dtpFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFecha.Location = new System.Drawing.Point(566, 183);
+            this.dtpFecha.Location = new System.Drawing.Point(579, 61);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(200, 21);
             this.dtpFecha.TabIndex = 6;
@@ -133,7 +134,7 @@ namespace Visual
             // 
             this.cmbHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHora.FormattingEnabled = true;
-            this.cmbHora.Location = new System.Drawing.Point(566, 225);
+            this.cmbHora.Location = new System.Drawing.Point(579, 103);
             this.cmbHora.Name = "cmbHora";
             this.cmbHora.Size = new System.Drawing.Size(121, 23);
             this.cmbHora.TabIndex = 7;
@@ -143,7 +144,7 @@ namespace Visual
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(447, 274);
+            this.label6.Location = new System.Drawing.Point(460, 152);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 16);
             this.label6.TabIndex = 8;
@@ -153,7 +154,7 @@ namespace Visual
             // 
             this.cmbOdontologo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOdontologo.FormattingEnabled = true;
-            this.cmbOdontologo.Location = new System.Drawing.Point(566, 266);
+            this.cmbOdontologo.Location = new System.Drawing.Point(579, 144);
             this.cmbOdontologo.Name = "cmbOdontologo";
             this.cmbOdontologo.Size = new System.Drawing.Size(121, 23);
             this.cmbOdontologo.TabIndex = 9;
@@ -163,7 +164,7 @@ namespace Visual
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(447, 313);
+            this.label7.Location = new System.Drawing.Point(460, 191);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 16);
             this.label7.TabIndex = 10;
@@ -173,7 +174,7 @@ namespace Visual
             // 
             this.lblConsultorio.AutoSize = true;
             this.lblConsultorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsultorio.Location = new System.Drawing.Point(566, 313);
+            this.lblConsultorio.Location = new System.Drawing.Point(579, 191);
             this.lblConsultorio.Name = "lblConsultorio";
             this.lblConsultorio.Size = new System.Drawing.Size(42, 15);
             this.lblConsultorio.TabIndex = 11;
@@ -192,7 +193,7 @@ namespace Visual
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(484, 364);
+            this.btnLimpiar.Location = new System.Drawing.Point(468, 234);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(109, 36);
             this.btnLimpiar.TabIndex = 13;
@@ -202,7 +203,7 @@ namespace Visual
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(657, 364);
+            this.btnActualizar.Location = new System.Drawing.Point(641, 234);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(109, 36);
             this.btnActualizar.TabIndex = 14;
@@ -231,33 +232,10 @@ namespace Visual
             this.col_hora,
             this.col_odontologo,
             this.col_consultorio});
-            this.dgvCitas.Location = new System.Drawing.Point(21, 151);
+            this.dgvCitas.Location = new System.Drawing.Point(31, 191);
             this.dgvCitas.Name = "dgvCitas";
             this.dgvCitas.Size = new System.Drawing.Size(376, 158);
             this.dgvCitas.TabIndex = 16;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(154, 348);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(109, 36);
-            this.btnModificar.TabIndex = 17;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(431, 412);
-            this.splitter1.TabIndex = 18;
-            this.splitter1.TabStop = false;
-            // 
-            // errorP
-            // 
-            this.errorP.ContainerControl = this;
             // 
             // col_id
             // 
@@ -302,11 +280,43 @@ namespace Visual
             this.col_consultorio.Name = "col_consultorio";
             this.col_consultorio.ReadOnly = true;
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(154, 373);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(109, 36);
+            this.btnModificar.TabIndex = 17;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(431, 478);
+            this.splitter1.TabIndex = 18;
+            this.splitter1.TabStop = false;
+            // 
+            // errorP
+            // 
+            this.errorP.ContainerControl = this;
+            // 
+            // txtRegistro
+            // 
+            this.txtRegistro.Location = new System.Drawing.Point(468, 302);
+            this.txtRegistro.Multiline = true;
+            this.txtRegistro.Name = "txtRegistro";
+            this.txtRegistro.Size = new System.Drawing.Size(282, 154);
+            this.txtRegistro.TabIndex = 19;
+            // 
             // FrmEditarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 412);
+            this.ClientSize = new System.Drawing.Size(791, 478);
+            this.Controls.Add(this.txtRegistro);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvCitas);
             this.Controls.Add(this.btnBuscar);
@@ -364,5 +374,6 @@ namespace Visual
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
+        private System.Windows.Forms.TextBox txtRegistro;
     }
 }

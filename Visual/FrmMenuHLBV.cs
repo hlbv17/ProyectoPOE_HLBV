@@ -44,7 +44,6 @@ namespace Visual
         private void consultarToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
-            this.Visible = false;
             frmF.ShowDialog();
             
         }
@@ -55,5 +54,10 @@ namespace Visual
             frmEl.ShowDialog();
         }
 
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAcercaDeHLBV frmA = new FrmAcercaDeHLBV();
+            frmA.ShowDialog();
+        }
     }
 }

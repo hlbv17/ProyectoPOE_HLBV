@@ -379,29 +379,19 @@ namespace Datos
             return flag;
         }
 
-        /*public List<Cita> FiltrarCitas(DateTime hora, DateTime fecha)
+        public int ConsultarId(string cedula, DateTime fecha, DateTime hora)
         {
-            List<Cita> citas = new List<Cita>();
-            Cita c = null;
-            Odontologo o = null;
-            Paciente pa = null;
-            string sql = "SELECT C.id_cita, PE.nombre, C.fecha, C.hora, O.consultorio \n " +
-                          "FROM Cita C \n " +
-                          "INNER JOIN Paciente PA ON C.id_paciente = PA.id_persona \n " +
-                          "INNER JOIN Odontologo O ON C.id_odontologo = O.id_persona \n " +
-                          "INNER JOIN Persona PE ON PA.id_persona = PE.id_persona \n " +
-                          "--AND O.id_persona = PE.id_persona \n" +
-                          "WHERE C.fecha = '" + fecha + "' \n" +
-                          "AND C.hora = '" + hora + "'\n" +
-                          "UNION ALL \n" +
-                          "SELECT C.id_cita, PE.nombre, C.fecha, C.hora, O.consultorio \n" +
-                          "FROM Cita C \n" +
-                          "INNER JOIN Paciente PA ON C.id_paciente = PA.id_persona \n" +
-                          "INNER JOIN Odontologo O ON C.id_odontologo = O.id_persona \n" +
-                          "INNER JOIN Persona PE ON O.id_persona = PE.id_persona\n" +
-                          "AND O.id_persona = PE.id_persona \n" +
-                          "WHERE C.fecha = '" + fecha + "' \n" +
-                          "AND C.hora = '" + hora + "'; ";
+            int idCita = 0;
+            string x = "";
+            string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
+                         "O.consultorio \n" +
+                         "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
+                         "WHERE P1.id_persona = C.id_paciente \n" +
+                         "AND P2.id_persona = C.id_odontologo \n" +
+                         "AND C.id_odontologo = O.consultorio \n" +
+                         "AND P1.cedula = '" + cedula + "'\n" +
+                         "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'\n" +
+                         "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'";
             SqlDataReader dr = null;
             Console.WriteLine(sql);
             string mensaje = "";
@@ -413,52 +403,18 @@ namespace Datos
                     cmd.Connection = con.Cn;
                     cmd.CommandText = sql;
                     dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        c = new Cita();
-                        c.Id_cita = Convert.ToInt32(dr["id_cita"]);
-                        pa.Nombre = dr["nombre"].ToString();
-                        c.Fecha = Convert.ToDateTime(dr["fecha"]);
-                        c.Hora = Convert.ToDateTime(dr["hora"]);
-                        o.Consultorio = Convert.ToInt32(dr["consultorio"]);
-                        citas.Add(c);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al consultar en la tabla Cita " + ex.Message);
-                }
-            }
-            con.Cerrar();
-            return citas;
-        }*/
-
-        /*public int Indice()
-        {
-            int i = 0;
-            string sql = "SELECT COUNT(*) FROM Cita";
-            SqlDataReader dr = null;
-            string mensaje = "";
-            mensaje = con.Conectar();
-            if (mensaje[0] == '1')
-            {
-                try
-                {
-                    cmd.Connection = con.Cn;
-                    cmd.CommandText = sql;
-                    dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        i = (int)cmd.ExecuteScalar();
+                        idCita = Convert.ToInt32(dr["id_cita"].ToString());
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al consultar en la tabla Cita " + ex.Message);
+                    Console.WriteLine("Error al actualizar en la tabla Cita " + ex.Message);
                 }
             }
-            con.Cerrar();
-            return i;
-        }*/
+            return idCita;
+        }
+
     }
 }

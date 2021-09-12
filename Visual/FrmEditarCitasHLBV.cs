@@ -42,7 +42,7 @@ namespace Visual
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            admCita.LimpiarCampos(txtCedula, dgvCitas, dtpFecha, cmbHora, cmbOdontologo);
+            admCita.LimpiarCampos(txtCedula, lblPaciente, dgvCitas, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio, txtRegistro);
             //admCita.BloquearCampos(dgvCitas, txtCedula, dtpFecha, cmbHora, cmbOdontologo);
         }
 
@@ -55,7 +55,7 @@ namespace Visual
             if (admCita.Validar(txtCedula, cmbHora, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.Editar(1, cedula, odontologo, fecha, dHora);
+                admCita.Editar(cedula, odontologo, fecha, dHora, txtRegistro);
             }
         }
 
@@ -77,8 +77,10 @@ namespace Visual
         private void btnModificar_Click(object sender, EventArgs e)
         {
             int posicion = dgvCitas.CurrentRow.Index;
-            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
-            admCita.ActualizarDatos(posicion, id, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
+            string cedula = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_cedula"].Value),
+                day = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_fecha"].Value),
+                hour = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_hora"].Value);
+            admCita.ActualizarDatos(posicion, cedula, day, hour, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
     }
 }

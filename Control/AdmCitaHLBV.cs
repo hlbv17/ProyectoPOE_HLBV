@@ -5,6 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Datos;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using Model;
 
 namespace Control
@@ -144,6 +151,12 @@ namespace Control
             txtRegistro.Text += Citas[Citas.Count - 1].ToString() + "\r\n";
         }
 
+        public void agregarE(int indice, TextBox txtRegistro)
+        {
+            if (citas.Count != 0)
+                txtRegistro.Text += Citas[indice].ToString() + "\r\n";
+        }
+
         public void LlenarTabla(DataGridView dgvCitas)
         {
             int i = 1; 
@@ -222,37 +235,14 @@ namespace Control
             
         }
 
-        public void ActualizarDatos(int posicion, int id, Label lblPaciente, DateTimePicker dtpFecha, 
+        public void ActualizarDatos(int posicion, string cedula, string fecha, string hora, TextBox txtCedula, Label lblPaciente, DateTimePicker dtpFecha, 
             ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio)
         {
             if (posicion >= 0)
             {
                 foreach (Cita c in citas)
                 {
-                    if (c.Id_cita.CompareTo(id) == 0)
-                    {
-                        lblPaciente.Text = c.Paciente.Nombre.ToString();
-                        dtpFecha.Value = c.Fecha;
-                        cmbHora.Items.Clear();
-                        llenarComboH(cmbHora);
-                        cmbHora.SelectedItem = c.Hora.ToString("HH:mm");
-                        //cmbOdontologo.Items.Clear();
-                        cmbOdontologo.SelectedItem = c.Odontologo.Nombre.ToString();
-                        lblConsultorio.Text = c.Odontologo.Consultorio.ToString();
-                    }
-
-                }
-            }
-        }
-
-        public void ActualizarDatos(int posicion, int id, TextBox txtCedula, Label lblPaciente, 
-            DateTimePicker dtpFecha, ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio)
-        {
-            if (posicion >= 0)
-            {
-                foreach (Cita c in citas)
-                {
-                    if (c.Id_cita.CompareTo(id) == 0)
+                    if (c.Paciente.Cedula.CompareTo(cedula) == 0 && c.Fecha.CompareTo(Convert.ToDateTime(fecha)) == 0 && c.Hora.CompareTo(Convert.ToDateTime(hora)) == 0)
                     {
                         txtCedula.Text = c.Paciente.Cedula.ToString();
                         lblPaciente.Text = c.Paciente.Nombre.ToString();
@@ -269,13 +259,14 @@ namespace Control
             }
         }
 
-        public void Editar(int id_cita, string cedula, string odonto, DateTime fecha, DateTime hora)
+
+        public void Editar(string cedula, string odonto, DateTime fecha, DateTime hora, TextBox txtRegistro)
         {
             int indice = 0;
             //Cita c = null;
             Paciente pa = null;
             Odontologo o = null;
-            indice = citas.FindIndex(x => x.Paciente.Cedula == cedula);
+            indice = dCita.ConsultarId(cedula, fecha, hora);
             c = citas[indice];
             c.Id_cita = c.Id_cita;
             pa = dPaciente.ConsultarPacienteNombre(cedula);
@@ -285,6 +276,7 @@ namespace Control
             c.Fecha = fecha;
             c.Hora = hora;
             UpdateBD(c);
+            agregarE(indice, txtRegistro);
         }
 
         public void UpdateBD(Cita c)
@@ -326,16 +318,20 @@ namespace Control
             cmbOdontologo.Enabled = true;
         }
 
-        public void LimpiarCampos(TextBox txtCedula, DataGridView dgvCitas, DateTimePicker dtpFecha, 
-            ComboBox cmbHora, ComboBox cmbOdontologo)
-        {            
+        public void LimpiarCampos(TextBox txtCedula, Label lblNombre, DataGridView dgvCitas, DateTimePicker dtpFecha, 
+            ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio, TextBox txtRegistro)
+        {
+            lblNombre.Text = "";
             txtCedula.Text = "";
-            cmbHora.SelectedIndex = 0;
+            cmbHora.Text = "";
             cmbOdontologo.Text = "";
+            lblConsultorio.Text = "";
             dtpFecha.Value = DateTime.Now;
             dgvCitas.Rows.Clear();
             BloquearCampos(txtCedula, dtpFecha, cmbHora, cmbOdontologo);
+            txtRegistro.Text = "";
         }
+
 
         public void LimpiarCampos(TextBox txtCedula, DataGridView dgvCitas, DateTimePicker dtpFecha, 
             ComboBox cmbHora, Button btnImprimir)
@@ -360,6 +356,45 @@ namespace Control
             lblNombre.Text = "____________________";
             lblConsultorio.Text = "___";
             txtRegistro.Text = "";
+        }
+
+        public void CrearPdf(string cedula, DateTime fecha, string hora, int n, string file)
+        {
+            PdfWriter pdfWriter = new PdfWriter(file);
+            PdfDocument pdf = new PdfDocument(pdfWriter);
+            Document documento = new Document(pdf, PageSize.LETTER);
+
+            documento.SetMargins(60, 20, 55, 20);
+            PdfFont fontColumnas = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+            PdfFont fontContenido = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+
+            string[] columnas = {"Nº", "Cédula", "Paciente", "Odontólogo", "Fecha", "Hora", "Consultorio"};
+            float[] tamanios = { 2, 4, 4, 4, 4, 3, 2};
+
+            Table tabla = new Table(UnitValue.CreatePercentArray(tamanios));
+            tabla.SetWidth(UnitValue.CreatePercentValue(100));
+
+            foreach (string columna in columnas)
+            {
+                tabla.AddHeaderCell(new Cell().Add(new Paragraph(columna).SetFont(fontColumnas)));
+            }
+            citas = dCita.ConsultarCitas(cedula, fecha, hora, n);
+            int i = 1;
+            foreach (Cita c in citas)
+            {
+                tabla.AddCell(new Cell().Add(new Paragraph(i + "").SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Paciente.Cedula).SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Paciente.Nombre).SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Odontologo.Nombre).SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Fecha.ToString("yyyy-MM-dd")).SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Hora.ToString("HH:mm")).SetFont(fontContenido)));
+                tabla.AddCell(new Cell().Add(new Paragraph(c.Odontologo.Consultorio + "").SetFont(fontContenido)));
+                i++;
+            }
+            documento.Add(tabla);
+            documento.Close();
+
+
         }
 
 

@@ -233,6 +233,7 @@ namespace Visual
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmEditar2HLBV";
             this.Text = "FrmEditar2HLBV";
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).EndInit();

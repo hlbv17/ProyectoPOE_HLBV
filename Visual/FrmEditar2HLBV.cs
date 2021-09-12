@@ -19,17 +19,17 @@ namespace Visual
             InitializeComponent();
             txtCedula.Enabled = false;
             int posicion = dgvCitas.CurrentRow.Index;
-            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
-            admCita.ActualizarDatos(posicion, id, txtCedula, lblPaciente, dtpFecha, cmbHora, 
-                cmbOdontologo, lblConsultorio);
+            string cedula = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_cedula"].Value),
+                day = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_fecha"].Value),
+                hour = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_hora"].Value);
+            admCita.ActualizarDatos(posicion, cedula, day, hour, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
-            frmF = new FrmFiltrarCitasHLBV();
             frmF.Visible = true;
-            this.Visible = false;
+            this.Close();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -41,8 +41,7 @@ namespace Visual
             if (admCita.Validar(txtCedula, cmbHora, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.Editar(1, cedula, odontologo, fecha, dHora);
-                admCita.agregar(txtRegistro);
+                admCita.Editar(cedula, odontologo, fecha, dHora, txtRegistro);
             }
             
         }

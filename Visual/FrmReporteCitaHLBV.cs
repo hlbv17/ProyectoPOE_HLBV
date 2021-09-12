@@ -1,4 +1,4 @@
-﻿using Datos;
+﻿using Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,15 +11,13 @@ using System.Windows.Forms;
 namespace Visual
 {
     public partial class FrmReporteCitaHLBV : Form
-    {  
-        //ReporteCitasHLBV reporte = new ReporteCitasHLBV();
-        public FrmReporteCitaHLBV(string cedula, DateTime fecha, string hora, int n)
+    {
+        AdmCitaHLBV admC = AdmCitaHLBV.GetAdm();
+        public FrmReporteCitaHLBV(string cedula, DateTime fecha, string hora, int n, string file)
         {
             InitializeComponent();
-            DataSet ds = new DataSet();
-            ReporteCitasHLBV reporte = new ReporteCitasHLBV();
-            ds = reporte.Buscar(cedula, fecha, hora, n);
-            //rptCitas.SetDataSource(ds.Tables[0]);     //nombre de la herramienta de Crystal q arrastre
+            admC.CrearPdf(cedula, fecha, hora, n, file);
+            axAcroPDF.src = file;
         }
     }
 }
