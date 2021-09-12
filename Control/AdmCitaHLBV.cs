@@ -24,14 +24,14 @@ namespace Control
         DatosPacienteHLBV dPaciente = new DatosPacienteHLBV();
         DatosOdontologoHLBV dOdontologo = new DatosOdontologoHLBV();
 
-        List<Cita> citas = null;
+        List<CitaHLBV> citas = null;
         Validacion val = null;
-        Cita c = null;
+        CitaHLBV c = null;
         Paciente pa = null;
         Odontologo o = null;
 
-        public Cita C { get => c; set => c = value; }
-        public List<Cita> Citas { get => citas; set => citas = value; }
+        public CitaHLBV C { get => c; set => c = value; }
+        public List<CitaHLBV> Citas { get => citas; set => citas = value; }
         public Paciente Pa { get => pa; set => pa = value; }
         public Odontologo O { get => o; set => o = value; }
 
@@ -42,7 +42,7 @@ namespace Control
 
         public AdmCitaHLBV()
         {
-            citas = new List<Cita>();
+            citas = new List<CitaHLBV>();
             val = new Validacion();
         }
 
@@ -114,7 +114,7 @@ namespace Control
 
         public void guardar(int id_cita, string cedula, string odonto, DateTime fecha, DateTime hora)
         {   
-            Cita c = null;
+            CitaHLBV c = null;
             Paciente pa = null;
             Odontologo o = null;
             if (dCita.ConsultarCitasExistentes(cedula, fecha, hora) == false) {
@@ -131,7 +131,7 @@ namespace Control
             
         }
 
-        public void guardarBD(Cita cita, Paciente p)
+        public void guardarBD(CitaHLBV cita, Paciente p)
         {
             string mensaje = "";
             if (p != null)
@@ -173,7 +173,7 @@ namespace Control
             int i = 1; 
             citas.Clear();
             Citas = dCita.ListarCitas();
-            foreach (Cita c in citas)
+            foreach (CitaHLBV c in citas)
             {
                 dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
@@ -191,7 +191,7 @@ namespace Control
             dgvCitas.Rows.Clear();
             if (citas.Count != 0)
             {
-                foreach (Cita c in citas)
+                foreach (CitaHLBV c in citas)
                 {
                     dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, 
                         c.Fecha.ToString("yyyy-MM-dd"), c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, 
@@ -225,7 +225,7 @@ namespace Control
             int i = 1;
             citas = dCita.ConsultarCitasF(fecha);
             dgvCitas.Rows.Clear();
-            foreach (Cita c in citas)
+            foreach (CitaHLBV c in citas)
             {
                 dgvCitas.Rows.Add(i, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
@@ -254,7 +254,7 @@ namespace Control
             dgvCitas.Rows.Clear();
             if (citas.Count != 0)
             {
-                foreach (Cita c in citas)
+                foreach (CitaHLBV c in citas)
                 {
                     dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre,c.Fecha.ToString("yyyy-MM-dd"), 
                         c.Hora.ToString("HH:ss"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
@@ -274,7 +274,7 @@ namespace Control
         {
             if (posicion >= 0)
             {
-                foreach (Cita c in citas)
+                foreach (CitaHLBV c in citas)
                 {
                     if (c.Paciente.Cedula.CompareTo(cedula) == 0 && c.Fecha.CompareTo(Convert.ToDateTime(fecha)) == 0 && c.Hora.CompareTo(Convert.ToDateTime(hora)) == 0)
                     {
@@ -295,7 +295,7 @@ namespace Control
         public void Editar(string cedula, string odonto, DateTime fecha, DateTime hora, TextBox txtRegistro)
         {
             int indice = 0;
-            //Cita c = null;
+            //CitaHLBV c = null;
             Paciente pa = null;
             Odontologo o = null;
             indice = dCita.ConsultarId(cedula, fecha, hora);
@@ -311,7 +311,7 @@ namespace Control
             agregarE(indice, txtRegistro);
         }
 
-        public void UpdateBD(Cita c)
+        public void UpdateBD(CitaHLBV c)
         {
             string mensaje = "";
             mensaje = dCita.EditarCitas(c);
@@ -382,7 +382,7 @@ namespace Control
             }
             citas = dCita.ConsultarCitas(cedula, fecha, hora, n);
             int i = 1;
-            foreach (Cita c in citas)
+            foreach (CitaHLBV c in citas)
             {
                 tabla.AddCell(new Cell().Add(new Paragraph(i + "").SetFont(fontContenido)));
                 tabla.AddCell(new Cell().Add(new Paragraph(c.Paciente.Cedula).SetFont(fontContenido)));

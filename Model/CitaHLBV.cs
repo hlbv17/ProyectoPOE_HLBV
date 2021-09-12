@@ -1,11 +1,9 @@
-﻿using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 
-namespace Model {
-    public class Cita {
+namespace Model
+{
+    public class CitaHLBV
+    {
 
         private int id_cita;
         private DateTime fecha;
@@ -13,7 +11,8 @@ namespace Model {
         private Odontologo odontologo;
         private Paciente paciente;
 
-        public Cita () {
+        public CitaHLBV()
+        {
             this.id_cita = 0;
             this.fecha = new DateTime();
             this.hora = new DateTime();
@@ -21,7 +20,8 @@ namespace Model {
             this.paciente = new Paciente();
         }
 
-        public Cita (int id_cita, DateTime fecha, DateTime hora, Odontologo odontologo, Paciente paciente) {
+        public CitaHLBV(int id_cita, DateTime fecha, DateTime hora, Odontologo odontologo, Paciente paciente)
+        {
             this.id_cita = id_cita;
             this.fecha = fecha;
             this.hora = hora;
@@ -35,7 +35,8 @@ namespace Model {
         public Odontologo Odontologo { get => odontologo; set => odontologo = value; }
         public Paciente Paciente { get => paciente; set => paciente = value; }
 
-        public override string ToString () {
+        public override string ToString()
+        {
             return
                 "\r\nCédula: " + paciente.Cedula +
                 "\r\nPaciente: " + paciente.Nombre +

@@ -14,7 +14,7 @@ namespace Datos
         SqlCommand cmd = new SqlCommand();
 
 
-        public String insertarCita(Cita c)
+        public String insertarCita(CitaHLBV c)
         {
             string sql = "INSERT INTO Cita (id_odontologo, id_paciente, fecha, hora)" +
                 "VALUES ('" + c.Odontologo.Id_persona + "','" + c.Paciente.Id_persona + "','" + c.Fecha.ToString("yyyy-MM-dd") + "','" + c.Hora.ToString("HH:mm") + "')";
@@ -40,10 +40,10 @@ namespace Datos
             return mensaje;
         }
 
-        public List<Cita> ListarCitas()
+        public List<CitaHLBV> ListarCitas()
         {
-            List<Cita> citas = new List<Cita>();
-            Cita c = null;
+            List<CitaHLBV> citas = new List<CitaHLBV>();
+            CitaHLBV c = null;
             Odontologo o = null;
             Paciente pa = null;
             string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, O.consultorio\n" +
@@ -64,7 +64,7 @@ namespace Datos
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        c = new Cita();
+                        c = new CitaHLBV();
                         pa = new Paciente();
                         o = new Odontologo();
                         
@@ -92,10 +92,10 @@ namespace Datos
             return citas;
         }
 
-        public List<Cita> ConsultarCitasxCedula(string cedula)
+        public List<CitaHLBV> ConsultarCitasxCedula(string cedula)
         {
-            List<Cita> citas = new List<Cita>();
-            Cita c = null;
+            List<CitaHLBV> citas = new List<CitaHLBV>();
+            CitaHLBV c = null;
             Odontologo o = null;
             Paciente pa = null;
             string sql = "SELECT C.id_cita, P1.cedula as cedula, P1.nombre as paciente, P2.nombre as odontologo, " +
@@ -118,7 +118,7 @@ namespace Datos
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        c = new Cita();
+                        c = new CitaHLBV();
                         pa = new Paciente();
                         o = new Odontologo();
 
@@ -146,10 +146,10 @@ namespace Datos
             return citas;
         }
 
-        public List<Cita> ConsultarCitas(string cedula, DateTime fecha, string hora, int n)
+        public List<CitaHLBV> ConsultarCitas(string cedula, DateTime fecha, string hora, int n)
         {
-            List<Cita> citas = new List<Cita>();
-            Cita c = null;
+            List<CitaHLBV> citas = new List<CitaHLBV>();
+            CitaHLBV c = null;
             Odontologo o = null;
             Paciente pa = null;
             string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
@@ -213,7 +213,7 @@ namespace Datos
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                         c = new Cita();
+                         c = new CitaHLBV();
                          pa = new Paciente();
                          o = new Odontologo();
 
@@ -241,10 +241,10 @@ namespace Datos
             return citas;
         }
 
-        public List<Cita> ConsultarCitasF(DateTime fecha)
+        public List<CitaHLBV> ConsultarCitasF(DateTime fecha)
         {
-            List<Cita> citas = new List<Cita>();
-            Cita c = null;
+            List<CitaHLBV> citas = new List<CitaHLBV>();
+            CitaHLBV c = null;
             Odontologo o = null;
             Paciente pa = null;
             string sql = "SELECT C.id_cita, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, " +
@@ -267,7 +267,7 @@ namespace Datos
                     dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        c = new Cita();
+                        c = new CitaHLBV();
                         pa = new Paciente();
                         o = new Odontologo();
 
@@ -318,7 +318,7 @@ namespace Datos
             return mensaje;
         }
 
-        public string EditarCitas(Cita c)
+        public string EditarCitas(CitaHLBV c)
         {
             string mensaje = "";
             string sql = "UPDATE Cita \n" +
