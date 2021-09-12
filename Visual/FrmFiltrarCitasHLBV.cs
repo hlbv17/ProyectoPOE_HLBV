@@ -30,69 +30,61 @@ namespace Visual
             string cedula = txtCedula.Text, hora = cmbHora.Text;
             DateTime fecha = dtpFecha.Value.Date;
             int n = 0;
-            /*if (chbCedula.Checked)
+            if (chbCedula.Checked)
             {
                 n = 1;
                 if (chbHora.Checked)
                 {
                     n = 2;
+                    if (chbFecha.Checked)
+                    {
+                        n = 7;
+                    }
                 }else if (chbFecha.Checked)
                 {
                     n = 3;
                 }
             }
-            if (chbHora.Checked)
+            else if (chbHora.Checked)
             {
                 n = 4;
                 if (chbFecha.Checked)
                 {
                     n = 5;
                 }
-                else if (chbCedula.Checked)
-                {
-                    n = 2;
-                }
             }
-            if (chbFecha.Checked)
+            else if (chbFecha.Checked)
             {
                 n = 6;
-                if (chbCedula.Checked)
-                {
-                    n = 3;
-                }
-                else if (chbHora.Checked)
-                {
-                    n = 4;
-                }
-            }*/
-            if (chbFecha.Checked && chbCedula.Checked && chbHora.Checked)
+            }
+            /*if (chbFecha.Checked && chbCedula.Checked && chbHora.Checked)
             {
                 n = 7;
-            }
-            else if (chbHora.Checked && chbCedula.Checked)
-            {
-                n = 4;
-            }
-            else if (chbFecha.Checked && chbCedula.Checked)
-            {
-                n = 5;
             }
             else if (chbFecha.Checked && chbHora.Checked)
             {
                 n = 6;
             }
-            else if (chbCedula.Checked)
+            else if (chbFecha.Checked && chbCedula.Checked)
             {
-                n = 1;
+                n = 5;
             }
-            else if (chbFecha.Checked)
+            else if (chbHora.Checked && chbCedula.Checked)
             {
-                n = 2;
+                n = 4;
             }
             else if (chbHora.Checked)
             {
                 n = 3;
             }
+            else if (chbFecha.Checked)
+            {
+                n = 2;
+            }
+            else if (chbCedula.Checked)
+            {
+                n = 1;
+            }*/  
             admC.FiltrarDatos(dgvCitas, cedula, fecha, hora, n, btnImprimir);
         }
 
