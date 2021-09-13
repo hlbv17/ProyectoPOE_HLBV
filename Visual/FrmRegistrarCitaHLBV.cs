@@ -18,7 +18,7 @@ namespace Visual
         public FrmRegistrarCitaHLBV()
         {
             InitializeComponent();
-            admCita.llenarComboH(cmbHora);
+            admCita.LlenarComboH(cmbHora);
             cmbHora.SelectedIndex = 0;
             cmbOdontologo.Enabled = false;
         }
@@ -50,8 +50,8 @@ namespace Visual
             if (admCita.Validar(txtPaciente, cmbHora, dtpFecha, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.guardar(1, cedula, odontologo, fecha, dHora);
-                admCita.agregar(txtRegistro);
+                admCita.Guardar(1, cedula, odontologo, fecha, dHora);
+                admCita.Agregar(txtRegistro);
             }
         }
 
