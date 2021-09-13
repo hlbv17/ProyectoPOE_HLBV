@@ -81,7 +81,6 @@ namespace Visual
             int posicion = dgvCitas.Rows.Count;
             if (posicion != 1)
             {
-                this.Close();
                 FrmEditar2HLBV frmE = new FrmEditar2HLBV(dgvCitas);
                 frmE.Visible = true;
                 

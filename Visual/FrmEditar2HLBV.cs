@@ -23,13 +23,6 @@ namespace Visual
             admCita.ActualizarDatos(posicion, id, lblId, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
 
-        private void btnRegresar_Click(object sender, EventArgs e)
-        {
-            FrmFiltrarCitasHLBV frmF = new FrmFiltrarCitasHLBV();
-            frmF.Visible = true;
-            this.Close();
-        }
-
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string cedula = txtCedula.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text; 

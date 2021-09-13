@@ -45,7 +45,6 @@ namespace Visual
             this.txtRegistro = new System.Windows.Forms.TextBox();
             this.txtCedula = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegresar = new System.Windows.Forms.Button();
             this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblId = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -199,16 +198,6 @@ namespace Visual
             this.label1.TabIndex = 29;
             this.label1.Text = "Cédula";
             // 
-            // btnRegresar
-            // 
-            this.btnRegresar.Location = new System.Drawing.Point(12, 12);
-            this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(58, 36);
-            this.btnRegresar.TabIndex = 31;
-            this.btnRegresar.Text = "<<< Regresar";
-            this.btnRegresar.UseVisualStyleBackColor = true;
-            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
-            // 
             // errorP
             // 
             this.errorP.ContainerControl = this;
@@ -239,7 +228,6 @@ namespace Visual
             this.ClientSize = new System.Drawing.Size(773, 450);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblId);
-            this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRegistro);
@@ -255,7 +243,7 @@ namespace Visual
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmEditar2HLBV";
             this.Text = "FrmEditar2HLBV";
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).EndInit();
@@ -281,7 +269,6 @@ namespace Visual
         private System.Windows.Forms.TextBox txtRegistro;
         private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.ErrorProvider errorP;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label label8;
