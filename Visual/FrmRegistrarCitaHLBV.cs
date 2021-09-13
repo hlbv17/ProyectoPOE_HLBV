@@ -41,9 +41,13 @@ namespace Visual
         {
             string cedula = txtPaciente.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
             DateTime fecha = dtpFecha.Value.Date;
-            DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
+            DateTime dHora = DateTime.Now;
+            if (cmbHora.Text != "--Seleccionar--")
+            {
+                dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
+            }
             errorP.Clear();
-            if (admCita.Validar(txtPaciente, cmbHora, cmbOdontologo, errorP))
+            if (admCita.Validar(txtPaciente, cmbHora, dtpFecha, cmbOdontologo, errorP))
             {
                 errorP.Clear();
                 admCita.guardar(1, cedula, odontologo, fecha, dHora);

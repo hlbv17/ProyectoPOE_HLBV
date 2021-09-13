@@ -31,6 +31,7 @@ namespace Visual
         {
             this.dgvCitas = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
+            this.col_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +46,7 @@ namespace Visual
             // 
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_n,
             this.col_id,
             this.colCedula,
             this.col_paciente,
@@ -68,10 +70,18 @@ namespace Visual
             this.label5.TabIndex = 13;
             this.label5.Text = "Listado de Citas";
             // 
+            // col_n
+            // 
+            this.col_n.HeaderText = "Nº";
+            this.col_n.Name = "col_n";
+            this.col_n.Width = 50;
+            // 
             // col_id
             // 
-            this.col_id.HeaderText = "Nº";
+            this.col_id.HeaderText = "ID";
             this.col_id.Name = "col_id";
+            this.col_id.ReadOnly = true;
+            this.col_id.Width = 50;
             // 
             // colCedula
             // 
@@ -123,6 +133,7 @@ namespace Visual
 
         private System.Windows.Forms.DataGridView dgvCitas;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_n;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;

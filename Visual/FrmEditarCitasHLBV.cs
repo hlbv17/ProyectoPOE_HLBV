@@ -49,13 +49,14 @@ namespace Visual
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string cedula = txtCedula.Text, hora = cmbHora.Text, odontologo = cmbOdontologo.Text;
+            int id = Convert.ToInt32(lblId.Text);
             DateTime fecha = dtpFecha.Value.Date;
             DateTime dHora = DateTime.Parse(hora, System.Globalization.CultureInfo.CurrentCulture);
             errorP.Clear();
-            if (admCita.Validar(txtCedula, cmbHora, cmbOdontologo, errorP))
+            if (admCita.Validar(txtCedula, cmbHora, dtpFecha, cmbOdontologo, errorP))
             {
                 errorP.Clear();
-                admCita.Editar(cedula, odontologo, fecha, dHora, txtRegistro);
+                admCita.Editar(id, cedula, odontologo, fecha, dHora, txtRegistro);
             }
         }
 
@@ -80,7 +81,7 @@ namespace Visual
             string cedula = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_cedula"].Value),
                 day = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_fecha"].Value),
                 hour = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_hora"].Value);
-            admCita.ActualizarDatos(posicion, cedula, day, hour, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
+            admCita.ActualizarDatos(posicion, cedula, day, hour, lblId, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
     }
 }

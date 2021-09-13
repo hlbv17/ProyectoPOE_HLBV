@@ -10,7 +10,7 @@ namespace Dentalig_HLBV_ProyectoPOE
     {
 
         // Variables
-        private Cita cita;
+        private CitaHLBV cita;
         private PiezaDental piezaDental;
         private string motivoConsulta;
         private string diagnostico;
@@ -24,7 +24,7 @@ namespace Dentalig_HLBV_ProyectoPOE
         }
 
         // Constructor: Parameterized
-        public AtencionMedica(Cita cita, PiezaDental piezaDental, string motivoConsulta, string diagnostico)
+        public AtencionMedica(CitaHLBV cita, PiezaDental piezaDental, string motivoConsulta, string diagnostico)
         {
             this.cita = cita;
             this.piezaDental = piezaDental;
@@ -34,7 +34,7 @@ namespace Dentalig_HLBV_ProyectoPOE
 
         public string MotivoConsulta { get => motivoConsulta; set => motivoConsulta = value; }  // Getter & Setter: cita
         public string Diagnostico { get => diagnostico; set => diagnostico = value; }           // Getter & Setter: piezaDental
-        public Cita Cita { get => cita; set => cita = value; }                                // Getter & Setter: motivoConsulta
+        public CitaHLBV Cita { get => cita; set => cita = value; }                                // Getter & Setter: motivoConsulta
         public PiezaDental PiezaDental { get => piezaDental; set => piezaDental = value; }    // Getter & Setter: diagnostico
 
         // Method: ToString

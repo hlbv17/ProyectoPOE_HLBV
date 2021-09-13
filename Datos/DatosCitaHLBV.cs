@@ -379,39 +379,32 @@ namespace Datos
             return flag;
         }
 
-        public int ConsultarId(string cedula, DateTime fecha, DateTime hora)
+        public int ConsultarId(string cedula, DateTime fecha, DateTime hora, string odontologo)
         {
             int idCita = 0;
-            string x = "";
-            string sql = "SELECT C.id_cita, P1.cedula, P1.nombre as paciente, P2.nombre as odontologo, C.fecha, C.hora, " +
-                         "O.consultorio \n" +
+            string sql = "SELECT C.id_cita \n" +
                          "FROM Cita C, Odontologo O, Persona P1, Persona P2 \n" +
                          "WHERE P1.id_persona = C.id_paciente \n" +
                          "AND P2.id_persona = C.id_odontologo \n" +
                          "AND C.id_odontologo = O.consultorio \n" +
                          "AND P1.cedula = '" + cedula + "'\n" +
                          "AND C.fecha = '" + fecha.ToString("yyyy-MM-dd") + "'\n" +
-                         "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'";
+                         "AND C.hora = '" + hora.ToString("HH:mm:ss") + "'\n" +
+                         "AND P2.nombre = '" + odontologo + "'";
             SqlDataReader dr = null;
             Console.WriteLine(sql);
             string mensaje = "";
             mensaje = con.Conectar();
             if (mensaje[0] == '1')
             {
-                try
-                {
-                    cmd.Connection = con.Cn;
-                    cmd.CommandText = sql;
-                    dr = cmd.ExecuteReader();
-                    if (dr.Read())
+                cmd.Connection = con.Cn;
+                 cmd.CommandText = sql;
+                 dr = cmd.ExecuteReader();
+                if (dr.Read())
                     {
-                        idCita = Convert.ToInt32(dr["id_cita"].ToString());
+                        idCita = Convert.ToInt32(dr["id_cita"]);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al actualizar en la tabla Cita " + ex.Message);
-                }
+                
             }
             return idCita;
         }

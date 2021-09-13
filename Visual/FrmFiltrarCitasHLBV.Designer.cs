@@ -48,6 +48,7 @@ namespace Visual
             this.chbFecha = new System.Windows.Forms.CheckBox();
             this.chbCedula = new System.Windows.Forms.CheckBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.col_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,6 +64,7 @@ namespace Visual
             // 
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_n,
             this.col_id,
             this.col_cedula,
             this.col_paciente,
@@ -70,9 +72,9 @@ namespace Visual
             this.col_hora,
             this.col_odontologo,
             this.col_consultorio});
-            this.dgvCitas.Location = new System.Drawing.Point(30, 228);
+            this.dgvCitas.Location = new System.Drawing.Point(38, 228);
             this.dgvCitas.Name = "dgvCitas";
-            this.dgvCitas.Size = new System.Drawing.Size(653, 272);
+            this.dgvCitas.Size = new System.Drawing.Size(655, 272);
             this.dgvCitas.TabIndex = 1;
             // 
             // label2
@@ -252,9 +254,15 @@ namespace Visual
             this.saveFileDialog1.FileName = "ReporteCitas";
             this.saveFileDialog1.Filter = "Archivos PDF(*.pdf)|*.pdf";
             // 
+            // col_n
+            // 
+            this.col_n.HeaderText = "Nº";
+            this.col_n.Name = "col_n";
+            this.col_n.Width = 50;
+            // 
             // col_id
             // 
-            this.col_id.HeaderText = "Nº";
+            this.col_id.HeaderText = "ID";
             this.col_id.Name = "col_id";
             this.col_id.Width = 50;
             // 
@@ -344,6 +352,7 @@ namespace Visual
         private System.Windows.Forms.CheckBox chbFecha;
         private System.Windows.Forms.CheckBox chbCedula;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_n;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;

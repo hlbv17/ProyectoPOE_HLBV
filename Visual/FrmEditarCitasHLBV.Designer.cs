@@ -58,6 +58,8 @@ namespace Visual
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtRegistro = new System.Windows.Forms.TextBox();
+            this.lblId = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorP)).BeginInit();
             this.SuspendLayout();
@@ -311,11 +313,31 @@ namespace Visual
             this.txtRegistro.Size = new System.Drawing.Size(282, 154);
             this.txtRegistro.TabIndex = 19;
             // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(496, 0);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(25, 13);
+            this.lblId.TabIndex = 20;
+            this.lblId.Text = "___";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(460, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "ID";
+            // 
             // FrmEditarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 478);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblId);
             this.Controls.Add(this.txtRegistro);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvCitas);
@@ -375,5 +397,7 @@ namespace Visual
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
         private System.Windows.Forms.TextBox txtRegistro;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label label8;
     }
 }

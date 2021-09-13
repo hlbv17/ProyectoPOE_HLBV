@@ -1,11 +1,5 @@
 ﻿using Control;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Visual
@@ -16,7 +10,7 @@ namespace Visual
         public FrmFiltrarCitasHLBV()
         {
             InitializeComponent();
-            admC.llenarComboH(cmbHora);
+            admC.LlenarComboH(cmbHora);
             cmbHora.SelectedIndex = 0;
             chbCedula.Checked = true;
             chbFecha.Checked= true;
@@ -30,34 +24,7 @@ namespace Visual
             string cedula = txtCedula.Text, hora = cmbHora.Text;
             DateTime fecha = dtpFecha.Value.Date;
             int n = 0;
-            if (chbCedula.Checked)
-            {
-                n = 1;
-                if (chbHora.Checked)
-                {
-                    n = 2;
-                    if (chbFecha.Checked)
-                    {
-                        n = 7;
-                    }
-                }else if (chbFecha.Checked)
-                {
-                    n = 3;
-                }
-            }
-            else if (chbHora.Checked)
-            {
-                n = 4;
-                if (chbFecha.Checked)
-                {
-                    n = 5;
-                }
-            }
-            else if (chbFecha.Checked)
-            {
-                n = 6;
-            }
-            /*if (chbFecha.Checked && chbCedula.Checked && chbHora.Checked)
+            if (chbFecha.Checked && chbCedula.Checked && chbHora.Checked)
             {
                 n = 7;
             }
@@ -84,7 +51,7 @@ namespace Visual
             else if (chbCedula.Checked)
             {
                 n = 1;
-            }*/  
+            }
             admC.FiltrarDatos(dgvCitas, cedula, fecha, hora, n, btnImprimir);
         }
 
@@ -100,6 +67,7 @@ namespace Visual
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
+            dgvCitas.Rows.Clear();
             admC.LlenarTabla(dgvCitas);
         }
 

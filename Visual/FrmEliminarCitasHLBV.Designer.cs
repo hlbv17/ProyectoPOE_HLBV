@@ -33,14 +33,15 @@ namespace Visual
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvCitas = new System.Windows.Forms.DataGridView();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnMostrar = new System.Windows.Forms.Button();
+            this.col_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_paciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_odontologo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnMostrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCitas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@ namespace Visual
             // 
             this.dgvCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_n,
             this.col_id,
             this.col_paciente,
             this.col_fecha,
@@ -84,6 +86,32 @@ namespace Visual
             this.dgvCitas.Name = "dgvCitas";
             this.dgvCitas.Size = new System.Drawing.Size(564, 315);
             this.dgvCitas.TabIndex = 11;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(214, 426);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(81, 30);
+            this.btnEliminar.TabIndex = 19;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnMostrar
+            // 
+            this.btnMostrar.Location = new System.Drawing.Point(376, 426);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(81, 30);
+            this.btnMostrar.TabIndex = 20;
+            this.btnMostrar.Text = "Mostrar todo";
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
+            // 
+            // col_n
+            // 
+            this.col_n.HeaderText = "Nº";
+            this.col_n.Name = "col_n";
+            this.col_n.Width = 50;
             // 
             // col_id
             // 
@@ -117,26 +145,6 @@ namespace Visual
             this.col_consultorio.HeaderText = "Consultorio";
             this.col_consultorio.Name = "col_consultorio";
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(214, 426);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(81, 30);
-            this.btnEliminar.TabIndex = 19;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Location = new System.Drawing.Point(376, 426);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(81, 30);
-            this.btnMostrar.TabIndex = 20;
-            this.btnMostrar.Text = "Mostrar todo";
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
-            // 
             // FrmEliminarCitasHLBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,13 +169,14 @@ namespace Visual
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvCitas;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnMostrar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_n;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_paciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_hora;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_odontologo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_consultorio;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnMostrar;
     }
 }

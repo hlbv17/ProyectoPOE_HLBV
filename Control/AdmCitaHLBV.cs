@@ -70,7 +70,7 @@ namespace Control
             con.Cerrar();
         }
 
-        public void llenarComboH(ComboBox cmbHora)
+        public void LlenarComboH(ComboBox cmbHora)
         {
             cmbHora.Items.Add("--Seleccionar--");
             cmbHora.Items.Add("07:00");
@@ -85,7 +85,7 @@ namespace Control
         }
 
         //----------------REGISTRAR CITAS------------------------------
-        public bool Validar(TextBox txtCedula, ComboBox cmbHora, ComboBox cmbOdontologo, ErrorProvider errorP)
+        public bool Validar(TextBox txtCedula, ComboBox cmbHora, DateTimePicker dtpFecha, ComboBox cmbOdontologo, ErrorProvider errorP)
         {
             bool no_error = true;
             string cedula = txtCedula.Text;
@@ -94,17 +94,22 @@ namespace Control
                 errorP.SetError(txtCedula, "Ingrese una cédula");
                 no_error = false;
             }
-            if (cedula.Length < 10)
+            if (cedula.Length < 10 || dPaciente.ConsultarPacienteCedula(txtCedula.Text))
             {
-                errorP.SetError(txtCedula, "La cédula debe ser de 10 dígitos");
+                errorP.SetError(txtCedula, "Esa cédula no está registrada\nLa cédula debe ser de 10 dígitos");
                 no_error = false;
             }
-            if (String.IsNullOrEmpty(cmbHora.Text))
+            if (dtpFecha.Value.Date < DateTime.Now)
+            {
+                errorP.SetError(dtpFecha, "Debe escoger una fecha posterior al día de hoy "+DateTime.Now);
+                no_error = false;
+            }
+            if (cmbHora.Text == "--Seleccionar--")
             {
                 errorP.SetError(cmbHora, "Seleccione una hora");
                 no_error = false;
             }
-            if (String.IsNullOrEmpty(cmbOdontologo.Text))
+            if (cmbOdontologo.Text == "--Seleccionar--")
             {
                 errorP.SetError(cmbOdontologo, "Seleccione un odontólogo");
                 no_error = false;
@@ -112,7 +117,7 @@ namespace Control
             return no_error;
         }
 
-        public void guardar(int id_cita, string cedula, string odonto, DateTime fecha, DateTime hora)
+        public void Guardar(int id_cita, string cedula, string odonto, DateTime fecha, DateTime hora)
         {   
             CitaHLBV c = null;
             Paciente pa = null;
@@ -122,7 +127,7 @@ namespace Control
                 o = dOdontologo.ConsultarOdontologo(odonto);
                 c = new CitaHLBV(id_cita, fecha, hora, o, pa);
                 citas.Add(c);
-                guardarBD(c, pa);
+                GuardarBD(c);
             }
             else
             {
@@ -131,13 +136,10 @@ namespace Control
             
         }
 
-        public void guardarBD(CitaHLBV cita, Paciente p)
+        public void GuardarBD(CitaHLBV cita)
         {
             string mensaje = "";
-            if (p != null)
-            {
-                mensaje = dCita.insertarCita(cita);
-            }
+            mensaje = dCita.insertarCita(cita);
             if (mensaje[0] == '1')
                 MessageBox.Show("Ingreso de datos correctamente");
             else
@@ -145,7 +147,7 @@ namespace Control
         }
 
 
-        public void agregar(TextBox txtRegistro)
+        public void Agregar(TextBox txtRegistro)
         {
             if(citas.Count != 0)
             txtRegistro.Text += Citas[Citas.Count - 1].ToString() + "\r\n";
@@ -193,7 +195,7 @@ namespace Control
             {
                 foreach (CitaHLBV c in citas)
                 {
-                    dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, 
+                    dgvCitas.Rows.Add(i, c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre, 
                         c.Fecha.ToString("yyyy-MM-dd"), c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, 
                         c.Odontologo.Consultorio);
                     i++;
@@ -227,7 +229,7 @@ namespace Control
             dgvCitas.Rows.Clear();
             foreach (CitaHLBV c in citas)
             {
-                dgvCitas.Rows.Add(i, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
+                dgvCitas.Rows.Add(i, c.Id_cita, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
                 i++;
             }
@@ -236,8 +238,7 @@ namespace Control
         public void EliminarCita(DataGridView dgvCitas, int posicion)
         {
 
-            int indice = 0;
-            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
+            int indice = 0, id= Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
             dgvCitas.Rows.RemoveAt(posicion);
             dCita.EliminarCitas(id);
             indice = citas.FindIndex(x => x.Id_cita == id);
@@ -256,7 +257,7 @@ namespace Control
             {
                 foreach (CitaHLBV c in citas)
                 {
-                    dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre,c.Fecha.ToString("yyyy-MM-dd"), 
+                    dgvCitas.Rows.Add(i, c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre,c.Fecha.ToString("yyyy-MM-dd"), 
                         c.Hora.ToString("HH:ss"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
                     i++;
                 }
@@ -269,7 +270,7 @@ namespace Control
             
         }
 
-        public void ActualizarDatos(int posicion, string cedula, string fecha, string hora, TextBox txtCedula, Label lblPaciente, DateTimePicker dtpFecha, 
+        public void ActualizarDatos(int posicion,  string cedula, string fecha, string hora, Label lblID,TextBox txtCedula, Label lblPaciente, DateTimePicker dtpFecha, 
             ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio)
         {
             if (posicion >= 0)
@@ -278,11 +279,12 @@ namespace Control
                 {
                     if (c.Paciente.Cedula.CompareTo(cedula) == 0 && c.Fecha.CompareTo(Convert.ToDateTime(fecha)) == 0 && c.Hora.CompareTo(Convert.ToDateTime(hora)) == 0)
                     {
+                        lblID.Text = c.Id_cita.ToString(); 
                         txtCedula.Text = c.Paciente.Cedula.ToString();
                         lblPaciente.Text = c.Paciente.Nombre.ToString();
                         dtpFecha.Value = c.Fecha;
                         cmbHora.Items.Clear();
-                        llenarComboH(cmbHora);
+                        LlenarComboH(cmbHora);
                         cmbHora.SelectedItem = c.Hora.ToString("HH:mm");
                         //cmbOdontologo.Items.Clear();
                         cmbOdontologo.SelectedItem = c.Odontologo.Nombre.ToString();
@@ -292,13 +294,14 @@ namespace Control
                 }
             }
         }
-        public void Editar(string cedula, string odonto, DateTime fecha, DateTime hora, TextBox txtRegistro)
+
+        public void Editar(int id, string cedula, string odonto, DateTime fecha, DateTime hora, TextBox txtRegistro)
         {
             int indice = 0;
             //CitaHLBV c = null;
             Paciente pa = null;
             Odontologo o = null;
-            indice = dCita.ConsultarId(cedula, fecha, hora);
+            indice = citas.FindIndex(x => x.Id_cita == id);
             c = citas[indice];
             c.Id_cita = c.Id_cita;
             pa = dPaciente.ConsultarPacienteNombre(cedula);
@@ -308,7 +311,7 @@ namespace Control
             c.Fecha = fecha;
             c.Hora = hora;
             UpdateBD(c);
-            agregarE(indice, txtRegistro);
+            AgregarE(indice, txtRegistro);
         }
 
         public void UpdateBD(CitaHLBV c)
@@ -321,7 +324,7 @@ namespace Control
                 MessageBox.Show("Error: " + mensaje);
         }
 
-        public void agregarE(int indice, TextBox txtRegistro)
+        public void AgregarE(int indice, TextBox txtRegistro)
         {
             if (citas.Count != 0)
             txtRegistro.Text += Citas[indice].ToString() + "\r\n";
