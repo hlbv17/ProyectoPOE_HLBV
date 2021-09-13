@@ -19,10 +19,8 @@ namespace Visual
             InitializeComponent();
             txtCedula.Enabled = false;
             int posicion = dgvCitas.CurrentRow.Index;
-            string cedula = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_cedula"].Value),
-                day = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_fecha"].Value),
-                hour = Convert.ToString(dgvCitas.Rows[posicion].Cells["col_hora"].Value);
-            admCita.ActualizarDatos(posicion, cedula, day, hour, lblId, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
+            int id = Convert.ToInt32(dgvCitas.Rows[posicion].Cells["col_id"].Value);
+            admCita.ActualizarDatos(posicion, id, lblId, txtCedula, lblPaciente, dtpFecha, cmbHora, cmbOdontologo, lblConsultorio);
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

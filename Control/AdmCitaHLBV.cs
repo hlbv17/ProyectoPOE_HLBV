@@ -177,7 +177,7 @@ namespace Control
             Citas = dCita.ListarCitas();
             foreach (CitaHLBV c in citas)
             {
-                dgvCitas.Rows.Add(i, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
+                dgvCitas.Rows.Add(i, c.Id_cita, c.Paciente.Cedula, c.Paciente.Nombre, c.Fecha.ToString("yyyy-MM-dd"), 
                     c.Hora.ToString("HH:mm"), c.Odontologo.Nombre, c.Odontologo.Consultorio);
                 i++;
             }
@@ -270,14 +270,14 @@ namespace Control
             
         }
 
-        public void ActualizarDatos(int posicion,  string cedula, string fecha, string hora, Label lblID,TextBox txtCedula, Label lblPaciente, DateTimePicker dtpFecha, 
+        public void ActualizarDatos(int posicion,  int id, Label lblID,TextBox txtCedula, Label lblPaciente, DateTimePicker dtpFecha, 
             ComboBox cmbHora, ComboBox cmbOdontologo, Label lblConsultorio)
         {
             if (posicion >= 0)
             {
                 foreach (CitaHLBV c in citas)
                 {
-                    if (c.Paciente.Cedula.CompareTo(cedula) == 0 && c.Fecha.CompareTo(Convert.ToDateTime(fecha)) == 0 && c.Hora.CompareTo(Convert.ToDateTime(hora)) == 0)
+                    if (c.Id_cita.CompareTo(id) == 0)
                     {
                         lblID.Text = c.Id_cita.ToString(); 
                         txtCedula.Text = c.Paciente.Cedula.ToString();
